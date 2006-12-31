@@ -1,0 +1,1180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<h1>S2JFace GUIコンポーネント一覧</h1>
+<p>
+ここでは、S2JFace で表示できる GUI コンポーネントのサンプルを画面定義 XML とともに紹介します。
+</p>
+<p>
+S2JFace の GUI コンポーネントは、SWT のウィジットに合わせて作成されているので、SWT のウィジットが持っている属性は、
+たいていそのまま指定することができます。
+</p>
+
+<ul>
+	<li><a href="#label">Label</a></li>
+	<li><a href="#text">Text</a></li>
+	<li><a href="#button">Button</a></li>
+	<li><a href="#link">Link</a></li>
+	<li><a href="#combo">Combo</a></li>
+	<li><a href="#spinner">Spinner</a></li>
+	<li><a href="#table">Table</a></li>
+	<li><a href="#menu">Menu</a></li>
+	<li><a href="#toolBar">ToolBar</a></li>
+	<li><a href="#coolBar">CoolBar</a></li>
+	<li><a href="#scale">Scale</a></li>
+	<li><a href="#slider">Slider</a></li>
+	<li><a href="#progressBar">ProgressBar</a></li>
+	<li><a href="#canvas">Canvas</a></li>
+	<li><a href="#tab">Tab</a></li>
+	<li><a href="#cTabFolder">CTabFolder</a></li>
+	<li><a href="#group">Group</a></li>
+	<li><a href="#sashForm">SashForm</a></li>
+</ul>
+
+<h2>テスト画面の表示方法</h2>
+<p>
+これらのサンプル画面はテストコードとして S2JFace に付属しているものです。
+お手元で実行してみたい方は、以下の手順に従ってください。
+</p>
+<p>
+また、テスト用の画面定義XML は、配布アーカイブ内の
+ /s2-jface-0.1.0/src/test/resources/org/seasar/jface/renderer/impl
+ディレクトリにあります。
+</p>
+<ol>
+	<li>Subversionリポジトリ(https://www.seasar.org/svn/sandbox/s2jface/)から s2jface プロジェクトを取得し、Eclipse へインポートする。</li>
+	<li>Eclipseのメニューから[ウィンドウ]-[設定]-[Java]-[インストール済みのJRE]を選択する。</li>
+	<li>現在使用しているJREを選択し、[編集]ボタンを押す。</li>
+	<li>[デフォルトのVM引数]に -Djava.library.path=C:\workspace\s2jface\lib を指定する。(ディレクトリは環境に応じて変更してください)</li>
+	<li>パッケージ・エクスプローラーから s2jface プロジェクトを選択して右クリックメニューを開き、[実行]-[JUnitテスト]を選択する。</li>
+</ol>
+
+<h2><a name="label">Label</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/label.png" width="714" height="431" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;labelRendererTest&quot; title=&quot;LabelRendererTest&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot; /&gt;
+        &lt;label style=&quot;BORDER&quot; text=&quot;ラベル&quot; toolTipText=&quot;ツールチップテキスト" /&gt;
+        &lt;label style=&quot;BORDER&quot; text=&quot;枠付きラベル&quot; /&gt;
+
+        &lt;label image=&quot;../../template/container.gif&quot; /&gt;
+
+        &lt;label image=&quot;/org/seasar/jface/template/container.gif&quot; /&gt;
+
+        &lt;label style=&quot;BORDER&quot; text=&quot;複数行テキスト1行目\n\t複数行テキスト2行目\n3行目&quot; /&gt;
+
+        &lt;label style=&quot;WRAP, BORDER&quot; text=&quot;WRAPスタイルを適用することで、長い文字列は折り返して表示されます。"
+          fontHeight=&quot;12&quot;&gt;
+          &lt;rowData width=&quot;200&quot; height=&quot;100&quot; /&gt;
+        &lt;/label&gt;
+      &lt;/composite&gt;
+
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot;&gt;
+          &lt;rowData width=&quot;300&quot; /&gt;
+        &lt;/rowLayout&gt;
+
+        &lt;label style=&quot;BORDER, LEFT&quot; text=&quot;左寄せ1&quot; /&gt;
+
+        &lt;label style=&quot;BORDER&quot; text=&quot;左寄せ2&quot; alignment=&quot;LEFT&quot; /&gt;
+
+        &lt;label style=&quot;BORDER, CENTER&quot; text=&quot;中央1&quot; /&gt;
+
+        &lt;label style=&quot;BORDER&quot; text=&quot;中央2&quot; alignment=&quot;CENTER&quot; /&gt;
+
+        &lt;label style=&quot;BORDER, RIGHT&quot; text=&quot;右寄せ1&quot; /&gt;
+
+        &lt;label style=&quot;BORDER&quot; text=&quot;右寄せ2&quot; alignment=&quot;RIGHT&quot; /&gt;
+
+        &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+        &lt;label style=&quot;SEPARATOR, VERTICAL&quot;&gt;
+          &lt;rowData height=&quot;100&quot; /&gt;
+        &lt;/label&gt;
+
+        &lt;label style=&quot;BORDER, CENTER&quot; text=&quot;色・フォントを変更&quot; fontName=&quot;ＭＳ 明朝&quot;
+          fontHeight=&quot;15&quot; fontStyle=&quot;BOLD, ITALIC&quot; foreground=&quot;yellow&quot;
+          background=&quot;blue&quot; /&gt;
+
+      &lt;/composite&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="text">Text</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/text.png" width="602" height="485" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;textRendererTest&quot; title=&quot;TextRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;12&quot; /&gt;
+
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot; spacing=&quot;6&quot; /&gt;
+
+        &lt;text text=&quot;テキスト" toolTipText=&quot;ツールチップ\nテキスト" /&gt;
+
+        &lt;text style=&quot;NONE&quot; text=&quot;枠なしテキスト" /&gt;
+
+        &lt;text style=&quot;BORDER, READ_ONLY&quot; text=&quot;読み取り専用1&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; editable=&quot;false&quot; text=&quot;読み取り専用2&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, PASSWORD&quot; text=&quot;パスワード" toolTipText=&quot;パスワード" /&gt;
+
+        &lt;text style=&quot;BORDER, RIGHT_TO_LEFT&quot; text=&quot;右から左へ入力1&quot;&gt;
+          &lt;rowData width=&quot;200&quot; /&gt;
+        &lt;/text&gt;
+        &lt;text style=&quot;BORDER&quot; orientation=&quot;RIGHT_TO_LEFT&quot; text=&quot;右から左へ入力2&quot;&gt;
+          &lt;rowData width=&quot;200&quot; /&gt;
+        &lt;/text&gt;
+
+        &lt;text style=&quot;BORDER, MULTI, H_SCROLL, V_SCROLL&quot;
+          text=&quot;複数行テキスト1行目\n\t複数行テキスト2行目\n3行目&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, MULTI, WRAP, V_SCROLL&quot;
+          text=&quot;WRAPスタイルを適用することで、長い文字列は折り返して表示されます。"&gt;
+          &lt;rowData width=&quot;200&quot; height=&quot;50&quot; /&gt;
+        &lt;/text&gt;
+
+      &lt;/composite&gt;
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot;&gt;
+          &lt;rowData width=&quot;300&quot; /&gt;
+        &lt;/rowLayout&gt;
+
+        &lt;text style=&quot;BORDER, LEFT&quot; text=&quot;左寄せ&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, CENTER&quot; text=&quot;中央&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, RIGHT&quot; text=&quot;右寄せ&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;ダブルクリック不可&quot; doubleClickEnabled=&quot;false&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;エコー文字（x）" echoChar=&quot;x&quot;
+          toolTipText=&quot;エコー文字（X）" /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;選択位置2-4（タブ移動でフォーカスして確認）" selectionStart=&quot;2&quot;
+          selectionEnd=&quot;4&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;選択開始位置2のみ指定" selectionStart=&quot;2&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;選択終了位置4のみ指定" selectionEnd=&quot;4&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, MULTI&quot; text=&quot;\tタブスペース4\nあ\t途中から\tタブ" tabs=&quot;4&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;テキストリミット12&quot; textLimit=&quot;12&quot; /&gt;
+
+        &lt;text style=&quot;BORDER, MULTI, V_SCROLL&quot;
+          text=&quot;１行目\n２行目\n３行目（トップインデックス２）\n４行目\n５行目\n６行目\n７行目&quot; topIndex=&quot;2&quot;&gt;
+          &lt;rowData height=&quot;50&quot; /&gt;
+        &lt;/text&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;見えないテキスト" visible=&quot;false&quot; /&gt;
+
+        &lt;text style=&quot;BORDER&quot; text=&quot;色・フォントを変更&quot; fontName=&quot;ＭＳ 明朝&quot; fontHeight=&quot;15&quot;
+          fontStyle=&quot;BOLD, ITALIC&quot; foreground=&quot;yellow&quot; background=&quot;blue&quot; /&gt;
+
+      &lt;/composite&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="button">Button</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/button.png" width="316" height="446" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;ButtonRendererTest&quot; title=&quot;ButtonRendererTest&quot;
+    image=&quot;/images/component.gif&quot; defaultButtonId=&quot;okButton&quot;
+    style=&quot;TITLE&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot;/&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot;/&gt;
+
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot; spacing=&quot;10&quot; /&gt;
+        &lt;button text=&quot;プッシュボタン&quot; toolTipText=&quot;ツールチップ\nテキスト" /&gt;
+        &lt;button style=&quot;FLAT&quot; text=&quot;フラットボタン&quot; /&gt;
+        &lt;button style=&quot;CHECK&quot; text=&quot;チェックボタン(OFF)&quot; /&gt;
+        &lt;button style=&quot;CHECK&quot; text=&quot;チェックボタン(ON)&quot; selection=&quot;true&quot; /&gt;
+        &lt;button style=&quot;TOGGLE&quot; text=&quot;トグルボタン(OFF)&quot; /&gt;
+        &lt;button style=&quot;TOGGLE&quot; text=&quot;トグルボタン(ON)&quot; selection=&quot;true&quot; /&gt;
+        &lt;button text=&quot;フォントを変更&quot; fontName=&quot;ＭＳ 明朝&quot; fontHeight=&quot;15&quot;
+          fontStyle=&quot;BOLD, ITALIC&quot; /&gt;
+        &lt;button image=&quot;/images/component.gif&quot; /&gt;
+      &lt;/composite&gt;
+
+      &lt;composite&gt;
+        &lt;rowLayout type=&quot;VERTICAL&quot; spacing=&quot;10&quot;&gt;
+          &lt;rowData width=&quot;30&quot; height=&quot;30&quot; /&gt;
+        &lt;/rowLayout&gt;
+
+        &lt;button style=&quot;ARROW, UP&quot; /&gt;
+        &lt;button style=&quot;ARROW, RIGHT&quot; /&gt;
+        &lt;button style=&quot;ARROW, DOWN&quot; /&gt;
+        &lt;button style=&quot;ARROW, LEFT&quot; /&gt;
+      &lt;/composite&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="link">Link</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+<img src="../images/link.png" width="401" height="204" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;linkRendererTest&quot; title=&quot;LinkRendererTest&quot; defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;link text=&quot;&lt;a href=&quot;link.html&quot;&gt;リンク&lt;/a&gt;&quot; toolTipText=&quot;ツールチップ\nテキスト"/&gt;
+      
+      &lt;link text=&quot;文字列の途中だけ&lt;a&gt;リンク&lt;/a&gt;する&quot; /&gt;
+      
+      &lt;link text=&quot;aタグがなければ全体をリンクとする&quot;/&gt;
+      
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="combo">Combo</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/combo.png" width="550" height="235" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;comboRendererTest&quot; title=&quot;ComboRendererTest&quot; defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;combo&gt;
+        &lt;item text=&quot;Item1-1&quot; /&gt;
+        &lt;item text=&quot;Item1-2&quot; /&gt;
+        &lt;item text=&quot;Item1-3&quot; /&gt;
+      &lt;/combo&gt;
+
+      &lt;combo style=&quot;DROP_DOWN&quot; text=&quot;Input&quot; textLimit=&quot;7&quot;&gt;
+        &lt;item text=&quot;Item2-1&quot; /&gt;
+        &lt;item text=&quot;Item2-2&quot; /&gt;
+        &lt;item text=&quot;Item2-3&quot; /&gt;
+      &lt;/combo&gt;
+
+      &lt;combo style=&quot;READ_ONLY&quot; visibleItemCount=&quot;2&quot;&gt;
+        &lt;item text=&quot;Item3-1&quot; /&gt;
+        &lt;item text=&quot;Item3-2&quot; /&gt;
+        &lt;item text=&quot;Item3-3&quot; /&gt;
+      &lt;/combo&gt;
+      
+      &lt;combo style=&quot;DROP_DOWN&quot; orientation=&quot;RIGHT_TO_LEFT&quot;&gt;
+        &lt;item text=&quot;Item4-1&quot; /&gt;
+        &lt;item text=&quot;Item4-2&quot; /&gt;
+        &lt;item text=&quot;Item4-3&quot; /&gt;
+      &lt;/combo&gt;
+
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="spinner">Spinner</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/spinner.png" width="429" height="136" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;spinnerRendererTest&quot; title=&quot;SpinnerRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;spinner minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;10&quot;
+        toolTipText=&quot;ツールチップ\nテキスト" increment=&quot;5&quot; /&gt;
+
+      &lt;spinner style=&quot;BORDER, VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;20&quot;
+        increment=&quot;1&quot; pageIncrement=&quot;10&quot; background=&quot;BLUE&quot; /&gt;
+
+      &lt;spinner style=&quot;BORDER, VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;66&quot;
+        increment=&quot;10&quot; pageIncrement=&quot;20&quot; digits=&quot;2&quot; /&gt;
+
+      &lt;spinner style=&quot;BORDER, READ_ONLY&quot; minimum=&quot;0&quot; maximum=&quot;100&quot;
+        selection=&quot;50&quot; toolTipText=&quot;読み取り専用&quot; /&gt;
+
+      &lt;spinner minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;10&quot;
+        fontStyle=&quot;ITALIC, BOLD&quot; /&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="table">Table</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/table.png" width="476" height="378" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;tableRendererTest&quot; title=&quot;TableRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;10&quot; /&gt;
+
+      &lt;table toolTipText=&quot;ツールチップ\nテキスト" headerVisible=&quot;true&quot;&gt;
+
+        &lt;tableColumn text=&quot;カラム１" toolTipText=&quot;カラム１ツールチップ" width=&quot;80&quot; /&gt;
+        &lt;tableColumn text=&quot;イメージ&quot; width=&quot;90&quot; image=&quot;/images/container.gif&quot; /&gt;
+        &lt;tableColumn text=&quot;リサイズ不可&quot; width=&quot;80&quot; resizable=&quot;false&quot; /&gt;
+        &lt;tableColumn text=&quot;移動可能&quot; width=&quot;80&quot; moveable=&quot;true&quot; /&gt;
+
+        &lt;tableItem id=&quot;item1&quot; text=&quot;アイテム1&quot; /&gt;
+
+        &lt;tableItem&gt;
+          &lt;tableCell text=&quot;セル2-1&quot; /&gt;
+          &lt;tableCell text=&quot;イメージ&quot; image=&quot;/images/component.gif&quot; /&gt;
+          &lt;tableCell text=&quot;色変更&quot; background=&quot;GREEN&quot; foreground=&quot;RED&quot; /&gt;
+          &lt;tableCell text=&quot;フォント変更&quot; fontHeight=&quot;15&quot; fontName=&quot;ＭＳ 明朝&quot;
+            fontStyle=&quot;BOLD, ITALIC&quot; /&gt;
+        &lt;/tableItem&gt;
+
+      &lt;/table&gt;
+
+      &lt;table style=&quot;FULL_SELECTION, MULTI, H_SCROLL, V_SCROLL&quot; headerVisible=&quot;true&quot;
+        background=&quot;GREEN&quot; foreground=&quot;RED&quot; linesVisible=&quot;true&quot; fontHeight=&quot;12&quot;
+        fontName=&quot;ＭＳ 明朝&quot; fontStyle=&quot;BOLD, ITALIC&quot; selection=&quot;0, 2&quot;
+        columnOrder=&quot;0,1,4,5,2,3&quot; topIndex=&quot;2&quot;&gt;
+        &lt;rowData height=&quot;70&quot; /&gt;
+
+        &lt;tableColumn text=&quot;左1&quot; width=&quot;70&quot; style=&quot;LEFT&quot; /&gt;
+        &lt;tableColumn text=&quot;左2&quot; width=&quot;70&quot; alignment=&quot;LEFT&quot; /&gt;
+        &lt;tableColumn text=&quot;右1&quot; width=&quot;70&quot; style=&quot;RIGHT&quot; /&gt;
+        &lt;tableColumn text=&quot;右2&quot; width=&quot;70&quot; alignment=&quot;RIGHT&quot; /&gt;
+        &lt;tableColumn text=&quot;中1&quot; width=&quot;70&quot; style=&quot;CENTER&quot; /&gt;
+        &lt;tableColumn text=&quot;中2&quot; width=&quot;70&quot; alignment=&quot;CENTER&quot; /&gt;
+
+        &lt;tableItem text=&quot;アイテム1&quot; /&gt;
+        &lt;tableItem text=&quot;アイテム2&quot; /&gt;
+        &lt;tableItem text=&quot;アイテム3&quot; /&gt;
+        &lt;tableItem text=&quot;アイテム4&quot; /&gt;
+        &lt;tableItem text=&quot;アイテム5&quot; /&gt;
+
+      &lt;/table&gt;
+
+      &lt;table style=&quot;BORDER, FULL_SELECTION, MULTI, CHECK&quot;&gt;
+
+        &lt;tableItem checked=&quot;true&quot; text=&quot;チェック&quot; /&gt;
+        &lt;tableItem text=&quot;フォント" fontHeight=&quot;12&quot; fontName=&quot;ＭＳ 明朝&quot; fontStyle=&quot;BOLD, ITALIC&quot;/&gt;
+        &lt;tableItem text=&quot;色&quot; background=&quot;GREEN&quot; foreground=&quot;RED&quot; /&gt;
+        &lt;tableItem checked=&quot;true&quot; text=&quot;グレーチェック&quot; grayed=&quot;true&quot; /&gt;
+        &lt;tableItem text=&quot;イメージ&quot; image=&quot;/images/container.gif&quot; /&gt;
+      &lt;/table&gt;
+
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="menu">Menu</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/menu.png" width="424" height="152" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;menuRendererTest&quot; title=&quot;MenuRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot; background=&quot;WHITE&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;menu&gt;
+      &lt;menu text=&quot;Menu1(&amp;M)&quot;&gt;
+        &lt;menuItem text=&quot;Menu1-1(&amp;1)&quot; /&gt;
+        &lt;menuItem text=&quot;Menu1-2(&amp;2)&quot; /&gt;
+        &lt;separator /&gt;
+        &lt;menu text=&quot;Menu1-3(&amp;3)&quot;&gt;
+          &lt;menuItem id=&quot;accelerator1&quot; text=&quot;Accelerator1\tF2&quot;
+            accelerator=&quot;F2&quot; /&gt;
+          &lt;menuItem id=&quot;accelerator2&quot; text=&quot;Accelerator2\tCtrl+M&quot;
+            accelerator=&quot;Ctrl+M&quot; /&gt;
+        &lt;/menu&gt;
+      &lt;/menu&gt;
+
+      &lt;menu text=&quot;Menu2&quot; defaultItemId=&quot;defaultItem&quot;&gt;
+        &lt;menuItem text=&quot;チェック(select)&quot; style=&quot;CHECK&quot; selection=&quot;true&quot; /&gt;
+        &lt;menuItem text=&quot;チェック&quot; style=&quot;CHECK&quot; /&gt;
+        &lt;separator /&gt;
+        &lt;menuItem text=&quot;ラジオ1&quot; style=&quot;RADIO&quot; /&gt;
+        &lt;menuItem text=&quot;ラジオ2(select)&quot; style=&quot;RADIO&quot; selection=&quot;true&quot; /&gt;
+        &lt;menuItem text=&quot;ラジオ3&quot; style=&quot;RADIO&quot; /&gt;
+        &lt;separator /&gt;
+        &lt;menuItem id=&quot;defaultItem&quot; text=&quot;デフォルト" /&gt;
+        &lt;menuItem text=&quot;disable&quot; enabled=&quot;false&quot; /&gt;
+        &lt;menuItem image=&quot;/images/container.gif&quot; text=&quot;イメージ&quot; /&gt;
+      &lt;/menu&gt;
+
+      &lt;menu text=&quot;DisableMenu(&amp;D)&quot; enabled=&quot;false&quot;&gt;
+        &lt;menuItem text=&quot;disable1&quot; style=&quot;CHECK&quot; selection=&quot;true&quot; /&gt;
+        &lt;menuItem text=&quot;disable2&quot; style=&quot;CHECK&quot; /&gt;
+      &lt;/menu&gt;
+    &lt;/menu&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;label text=&quot;ポップアップメニュー&quot; style=&quot;BORDER&quot;&gt;
+        &lt;menu&gt;
+          &lt;menuItem text=&quot;コンテキストメニュー1&quot;&gt;&lt;/menuItem&gt;
+          &lt;menuItem text=&quot;コンテキストメニュー2&quot;&gt;&lt;/menuItem&gt;
+          &lt;separator /&gt;
+          &lt;menu text=&quot;コンテキストメニュー3&quot;&gt;
+            &lt;menuItem text=&quot;3-1&quot;&gt;&lt;/menuItem&gt;
+            &lt;menuItem text=&quot;3-2&quot;&gt;&lt;/menuItem&gt;
+          &lt;/menu&gt;
+        &lt;/menu&gt;
+      &lt;/label&gt;
+
+      &lt;label text=&quot;ロケーション指定" style=&quot;BORDER&quot;&gt;
+        &lt;menu x=&quot;100&quot; y=&quot;200&quot;&gt;
+          &lt;menuItem text=&quot;コンテキストメニュー1&quot;&gt;&lt;/menuItem&gt;
+          &lt;menuItem text=&quot;コンテキストメニュー2&quot;&gt;&lt;/menuItem&gt;
+          &lt;separator /&gt;
+          &lt;menu text=&quot;コンテキストメニュー3&quot;&gt;
+            &lt;menuItem text=&quot;3-1&quot;&gt;&lt;/menuItem&gt;
+            &lt;menuItem text=&quot;3-2&quot;&gt;&lt;/menuItem&gt;
+          &lt;/menu&gt;
+        &lt;/menu&gt;
+      &lt;/label&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="toolBar">ToolBar</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/toolBar.png" width="916" height="150" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;ToolBarRendererTest&quot; title=&quot;ToolBarRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;12&quot; /&gt;
+
+      &lt;toolBar&gt;
+        &lt;toolItem text=&quot;アイテム&quot; toolTipText=&quot;ツールチップ\nテキスト" /&gt;
+        &lt;toolItem text=&quot;イメージ&quot; image=&quot;/images/container.gif&quot; /&gt;
+        &lt;toolItem text=&quot;使用不可イメージ&quot; image=&quot;/images/container.gif&quot; disabledImage=&quot;/images/component.gif&quot; enabled=&quot;false&quot; /&gt;
+        &lt;toolItem text=&quot;ホットイメージ&quot; image=&quot;/images/container.gif&quot; hotImage=&quot;/images/component.gif&quot; /&gt;
+        &lt;toolItem style=&quot;SEPARATOR&quot;/&gt;
+        &lt;toolItem style=&quot;CHECK&quot; text=&quot;チェック(非選択)&quot; /&gt;
+        &lt;toolItem style=&quot;CHECK&quot; text=&quot;チェック(選択)&quot; selection=&quot;true&quot; /&gt;
+        &lt;toolItem style=&quot;SEPARATOR&quot;/&gt;
+        &lt;toolItem style=&quot;RADIO&quot; text=&quot;ラジオ(非選択)&quot; /&gt;
+        &lt;toolItem style=&quot;RADIO&quot; text=&quot;ラジオ(選択)&quot; selection=&quot;true&quot;  /&gt;
+        &lt;toolItem style=&quot;SEPARATOR&quot;/&gt;
+        &lt;toolItem style=&quot;DROP_DOWN&quot; text=&quot;ドロップダウン&quot;&gt;
+        &lt;/toolItem&gt;
+      &lt;/toolBar&gt;
+      
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="coolBar">CoolBar</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/coolBar.png" width="215" height="160" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;CoolBarRendererTest&quot; title=&quot;CoolBarRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    
+    &lt;coolBar wrapIndices=&quot;2, 4&quot;&gt;
+      &lt;commonAttributes fontHeight=&quot;12&quot;/&gt;
+
+      &lt;coolItem&gt;
+        &lt;toolBar&gt;
+          &lt;toolItem image=&quot;/images/container.gif&quot; /&gt;
+          &lt;toolItem image=&quot;/images/component.gif&quot; /&gt;
+        &lt;/toolBar&gt;
+      &lt;/coolItem&gt;
+
+      &lt;coolItem&gt;
+        &lt;text text=&quot;テキスト" /&gt;
+      &lt;/coolItem&gt;
+
+      &lt;coolItem style=&quot;DROP_DOWN&quot;&gt;
+        &lt;toolBar&gt;
+          &lt;toolItem image=&quot;/images/container.gif&quot; /&gt;
+          &lt;toolItem image=&quot;/images/component.gif&quot; /&gt;
+        &lt;/toolBar&gt;
+      &lt;/coolItem&gt;
+
+      &lt;coolItem&gt;
+        &lt;label text=&quot;←ドロップダウン&quot; /&gt;
+      &lt;/coolItem&gt;
+
+      &lt;coolItem&gt;
+        &lt;button text=&quot;ボタン&quot; /&gt;
+      &lt;/coolItem&gt;
+
+      &lt;coolItem&gt;
+        &lt;composite&gt;
+          &lt;gridLayout numColumns=&quot;2&quot; /&gt;
+          &lt;label text=&quot;ラベル:&quot; /&gt;
+          &lt;button text=&quot;ボタン&quot; /&gt;
+        &lt;/composite&gt;
+      &lt;/coolItem&gt;
+
+    &lt;/coolBar&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="scale">Scale</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/scale.png" width="256" height="223" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;scaleRendererTest&quot; title=&quot;ScaleRendererTest&quot; defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;scale minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;10&quot; toolTipText=&quot;ツールチップ\nテキスト"
+        increment=&quot;5&quot; /&gt;
+
+      &lt;scale style=&quot;VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;20&quot;
+        increment=&quot;1&quot; pageIncrement=&quot;10&quot; /&gt;
+
+      &lt;scale style=&quot;VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;66&quot;
+        increment=&quot;10&quot; pageIncrement=&quot;20&quot; /&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="slider">Slider</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/slider.png" width="208" height="223" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;sliderRendererTest&quot; title=&quot;SliderRendererTest&quot; defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;slider minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;10&quot;
+        toolTipText=&quot;ツールチップ\nテキスト" increment=&quot;5&quot; /&gt;
+
+      &lt;slider style=&quot;VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;20&quot;
+        increment=&quot;1&quot; pageIncrement=&quot;10&quot; background=&quot;BLUE&quot; /&gt;
+
+      &lt;slider style=&quot;VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;66&quot;
+        increment=&quot;10&quot; pageIncrement=&quot;20&quot; thumb=&quot;20&quot; /&gt;
+        
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="progressBar">ProgressBar</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/progressBar.png" width="208" height="223" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;progressBarRendererTest&quot; title=&quot;ProgressBarRendererTest&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;progressBar minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;10&quot; toolTipText=&quot;ツールチップ\nテキスト" /&gt;
+
+      &lt;progressBar style=&quot;VERTICAL&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;20&quot; /&gt;
+
+      &lt;progressBar style=&quot;VERTICAL, SMOOTH&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; selection=&quot;66&quot; foreground=&quot;BLUE&quot;/&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="canvas">Canvas</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/canvas.png" width="248" height="207" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;canvasRendererTest&quot; title=&quot;CanvasRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;canvas id=&quot;canvas&quot; style=&quot;BORDER&quot; toolTipText=&quot;ツールチップ\nテキスト"&gt;
+        &lt;rowData width=&quot;200&quot; height=&quot;100&quot;/&gt;
+      &lt;/canvas&gt;
+
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="tab">Tab</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/tab.png" width="527" height="207" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;tabFolderRendererTest&quot; title=&quot;TabFolderRendererTest&quot; defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;tabFolder&gt;
+        &lt;tabItem text=&quot;tab1-1&quot;&gt;&lt;/tabItem&gt;
+        &lt;tabItem text=&quot;tab1-2&quot;&gt;&lt;/tabItem&gt;
+      &lt;/tabFolder&gt;
+
+      &lt;tabFolder selection=&quot;1&quot;&gt;
+        &lt;tabItem text=&quot;画像" image=&quot;/images/container.gif&quot;&gt;&lt;/tabItem&gt;
+        &lt;tabItem text=&quot;ツールチップ" toolTipText=&quot;ツールチップ\nテキスト"&gt;&lt;/tabItem&gt;
+        &lt;tabItem text=&quot;コントロール&quot;&gt;
+          &lt;label text=&quot;ラベル&quot; /&gt;
+        &lt;/tabItem&gt;
+      &lt;/tabFolder&gt;
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="cTabFolder">CTabFolder</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/cTabFolder.png" width="501" height="409" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;CTabFolderRendererTest&quot; title=&quot;CTabFolderRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;cTabFolder borderVisible=&quot;true&quot; maximizeVisible=&quot;true&quot;
+        minimizeVisible=&quot;true&quot; maximized=&quot;true&quot; mruVisible=&quot;true&quot; simple=&quot;false&quot;
+        selection=&quot;1&quot;&gt;
+        &lt;rowData width=&quot;300&quot; /&gt;
+
+        &lt;cTabItem text=&quot;tab1-1&quot; /&gt;
+        &lt;cTabItem text=&quot;tab1-2&quot; /&gt;
+        &lt;cTabItem text=&quot;tab1-3&quot; /&gt;
+        &lt;cTabItem text=&quot;tab1-4&quot; /&gt;
+      &lt;/cTabFolder&gt;
+
+      &lt;cTabFolder marginHeight=&quot;10&quot; marginWidth=&quot;10&quot; selectionBackground=&quot;BLUE&quot;
+        selectionForeground=&quot;WHITE&quot;&gt;
+        &lt;cTabItem text=&quot;画像" image=&quot;/images/container.gif&quot; /&gt;
+        &lt;cTabItem text=&quot;ツールチップ" toolTipText=&quot;ツールチップ\nテキスト" /&gt;
+        &lt;cTabItem text=&quot;コントロール&quot;&gt;
+          &lt;label text=&quot;ラベル&quot; /&gt;
+        &lt;/cTabItem&gt;
+        &lt;cTabItem text=&quot;フォント" fontStyle=&quot;ITALIC, BOLD&quot; /&gt;
+      &lt;/cTabFolder&gt;
+
+      &lt;cTabFolder style=&quot;BORDER, CLOSE, BOTTOM&quot; fontStyle=&quot;BOLD, ITALIC&quot;
+        minimumCharacters=&quot;3&quot; selection=&quot;0&quot;
+        selectionForeground=&quot;TITLE_FOREGROUND&quot;&gt;
+        &lt;rowData width=&quot;300&quot; /&gt;
+
+        &lt;selectionBackgroundGradient startColor=&quot;TITLE_BACKGROUND&quot;
+          vertical=&quot;true&quot;&gt;
+          &lt;gradientItem color=&quot;TITLE_BACKGROUND_GRADIENT&quot; percent=&quot;100&quot; /&gt;
+        &lt;/selectionBackgroundGradient&gt;
+
+        &lt;cTabItem text=&quot;3-1&quot; /&gt;
+        &lt;cTabItem text=&quot;長いテキスト" /&gt;
+        &lt;cTabItem text=&quot;3-3&quot; /&gt;
+        &lt;cTabItem text=&quot;3-4&quot; /&gt;
+        &lt;cTabItem text=&quot;3-5&quot; /&gt;
+      &lt;/cTabFolder&gt;
+
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="group">Group</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/group.png" width="147" height="186" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;groupRendererTest&quot; title=&quot;GroupRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;group text=&quot;グループ"&gt;
+        &lt;rowLayout type=&quot;HORIZONTAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+          spacing=&quot;10&quot;&gt;
+        &lt;/rowLayout&gt;
+        
+        &lt;label text=&quot;ラベル&quot; /&gt;
+      &lt;/group&gt;
+      
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<h2><a name="sashForm">SashForm</a></h2>
+<h3>画面サンプル</h3>
+<div align="center">
+	<img src="../images/sashForm.png" width="348" height="543" alt="" />
+</div>
+<h3>画面定義XML</h3>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;sashFormRendererTest&quot; title=&quot;SashFormRendererTest&quot;
+    defaultButtonId=&quot;okButton&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite id=&quot;contents&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;rowLayout type=&quot;VERTICAL&quot; marginWidth=&quot;10&quot; marginHeight=&quot;10&quot;
+        spacing=&quot;10&quot;&gt;
+      &lt;/rowLayout&gt;
+      &lt;commonAttributes fontHeight=&quot;20&quot; /&gt;
+
+      &lt;sashForm style=&quot;BORDER&quot;&gt;
+        &lt;text text=&quot;左テキスト" /&gt;
+        &lt;text text=&quot;右テキスト" /&gt;
+      &lt;/sashForm&gt;
+
+      &lt;sashForm style=&quot;BORDER&quot; weights=&quot;1, 2&quot;&gt;
+        &lt;rowData width=&quot;300&quot; /&gt;
+
+        &lt;text text=&quot;ウェイト１" /&gt;
+        &lt;text text=&quot;ウェイト２" /&gt;
+      &lt;/sashForm&gt;
+
+      &lt;sashForm style=&quot;BORDER, VERTICAL&quot;&gt;
+        &lt;text text=&quot;上テキスト" /&gt;
+        &lt;text text=&quot;下テキスト" /&gt;
+      &lt;/sashForm&gt;
+
+      &lt;sashForm style=&quot;BORDER&quot; orientation=&quot;VERTICAL&quot;&gt;
+        &lt;text text=&quot;上テキスト２" /&gt;
+        &lt;text text=&quot;下テキスト２" /&gt;
+      &lt;/sashForm&gt;
+
+      &lt;sashForm style=&quot;BORDER&quot; maximizedControlId=&quot;maxText&quot;&gt;
+        &lt;text text=&quot;テキスト" /&gt;
+        &lt;text id=&quot;maxText&quot; text=&quot;最大化" /&gt;
+      &lt;/sashForm&gt;
+
+      &lt;sashForm style=&quot;BORDER&quot;&gt;
+        &lt;text text=&quot;左テキスト" /&gt;
+
+        &lt;sashForm style=&quot;VERTICAL&quot;&gt;
+          &lt;text text=&quot;入れ子上" /&gt;
+          &lt;text text=&quot;入れ子中&quot; /&gt;
+          &lt;text text=&quot;入れ子下" /&gt;
+        &lt;/sashForm&gt;
+      &lt;/sashForm&gt;
+
+    &lt;/composite&gt;
+
+    &lt;label style=&quot;SEPARATOR, HORIZONTAL&quot; /&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; spacing=&quot;5&quot; /&gt;
+
+      &lt;button id=&quot;okButton&quot; text=&quot;OK&quot;&gt;&lt;/button&gt;
+      &lt;button id=&quot;ngButton&quot; text=&quot;NG&quot;&gt;&lt;/button&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">Copyright&copy; 2004-2006, The Seasar Foundation and the others. All rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>
