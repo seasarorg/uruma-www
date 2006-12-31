@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<h1>S2JFace ドキュメント</h1>
+
+<h2><a name="setup">セットアップ</a></h2>
+<p>
+S2JFace は、<b>Java SE 5.0 以降</b>の環境で動作します。
+</p>
+<p>
+また、S2JFace を利用するには、S2JFace 本体の他に以下のプロダクトが必要です。
+(それぞれ、<a href="http://s2container.seasar.org/ja/#download">ダウンロードサイト</a>からダウンロードしてください)
+</p>
+<ul>
+	<li>S2Container 2.4.7 以降</li>
+	<li>S2Tiger 2.4.7 以降</li>
+</ul>
+<p>
+具体的には、以下のJarファイルがクラスパスに通っている必要があります。
+</p>
+<div align="center">
+	<table class="view">
+		<tr><th>Jarファイル</th><th>配布プロダクト</th></tr>
+		<tr><td>s2-jface-0.1.0.jar</td><td rowspan="6">S2JFace</td></tr>
+		<tr><td>eclipse-common-1.0-SNAPSHOT.jar</td></tr>
+		<tr><td>jface-3.2.0.jar</td></tr>
+		<tr><td>swt-win32-win32-x86-3.2.0.jar</td></tr>
+		<tr><td>core-commands-3.2.0.jar</td></tr>
+		<tr><td>equinox-common-3.2.0.jar</td></tr>
+		<tr><td>s2-framework-2.4.7.jar</td><td rowspan="7">S2Container</td></tr>
+		<tr><td>s2-extension-2.4.7.jar</td></tr>
+		<tr><td>aopalliance-1.0.jar</td></tr>
+		<tr><td>commons-logging-1.1.jar</td></tr>
+		<tr><td>geronimo-j2ee_1.4_spec-1.0.jar</td></tr>
+		<tr><td>javassist-3.4.ga.jar</td></tr>
+		<tr><td>ognl-2.6.7.jar</td></tr>
+		<tr><td>s2-tiger-2.4.7.jar</td><td>S2Tiger</td></tr>
+	</table>
+</div>
+
+<p>
+また、S2JFace では GUIツールキットとして <a href="http://www.eclipse.org/swt/">SWT</a> を
+利用します。そのため、Javaの起動オプションに以下の設定を追加する必要があります。
+</p>
+
+<pre>
+-Djava.library.path=(SWTライブラリのパス)
+</pre>
+
+<p>
+ここで、「SWTライブラリのパス」とは、swt-xxx-yyyy.dll が存在するパスです。
+これらのファイルは S2JFace 配布アーカイブの lib ディレクトリに添付されているので、
+たとえば以下のように指定してください。
+</p>
+
+<pre>
+-Djava.library.path=c:/s2-jface-0.1.0/lib
+</pre>
+
+参考までに、上記をまとめた Java の起動オプションは、以下のようになります。
+<pre>
+java -cp lib/s2-jface-0.1.0.jar;lib/eclipse-common-1.0-SNAPSHOT.jar;lib/jface-3.2.0.jar;
+lib/swt-win32-win32-x86-3.2.0.jar;lib/core-commands-3.2.0.jar;lib/equinox-common-3.2.0.jar;
+lib/s2-framework-2.4.7.jar;lib/s2-extension-2.4.7.jar;lib/aopalliance-1.0.jar;
+lib/commons-logging-1.1.jar;lib/geronimo-j2ee_1.4_spec-1.0.jar;lib/javassist-3.4.ga.jar;
+lib/ognl-2.6.7.jar;lib/s2-tiger-2.4.7.jar -Djava.library.path=c:/s2-jface-0.1.0/lib
+(実行するアプリケーションのメインクラス)
+</pre>
+
+<h2><a name="functions">S2JFaceの提供する機能</a></h2>
+<p>S2JFaceは以下の機能を提供します。</p>
+<ul>
+	<li>画面定義XMLを読み込んで画面を表示する</li>
+	<li>画面上でボタンが押されたら、Actionクラスのメソッドを呼び出す(Method Binding)</li>
+	<li>画面を構成するGUIオブジェクトをActionクラスへインジェクションする(Widget Injection)</li>
+	<li>Formオブジェクトのフィールドを画面上のGUIオブジェクトへ表示する(Export Value Binding)</li>
+	<li>GUIオブジェクトに入力された値をFormオブジェクトのフィールドに代入する(Import Value Binding)</li>
+	<li>画面上のGUIオブジェクトをFormオブジェクトで指定した項目で選択する(Export Selection)</li>
+	<li>画面上で選択された項目をGUIオブジェクトへ代入する(Import Selection)</li>
+</ul>
+
+<h2><a name="viewXml">画面表示機能</a></h2>
+<p>S2JFaceでは、画面定義情報が記述されたXMLファイルを読み込んで、画面を表示することができます。
+これにより、画面表示のための面倒なコーディングを行わなくとも、GUI画面を簡単に作成することができます。</p>
+
+<p>
+残念ながら、現在のところ、S2JFace の画面定義を作成するにはある程度 SWT に関する知識が必要になります。
+(とはいっても、そんなに難しいものではありませんが・・・)
+しかし、将来的には SWT の知識がなくても、画面定義ファイルを作成できるよう、簡便化していく予定です。
+</p>
+
+<p>
+なお、S2JFace は現在開発中であるため、ここで紹介する画面定義 XML の仕様は
+<font color="red">将来変更される可能性があります</font>。何卒、ご了承ください。
+</p>
+
+<p>
+さて、実際に画面定義 XML の例を見てみましょう。
+</p>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;janken&quot; title=&quot;DIでジャンケン&quot; image=&quot;container.gif&quot; background=&quot;white&quot;&gt;
+    &lt;commonAttributes background=&quot;white&quot; foreground=&quot;black&quot; fontHeight=&quot;50&quot;/&gt;
+    &lt;gridLayout numColumns=&quot;3&quot; marginHeight=&quot;5&quot; marginWidth=&quot;5&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;CENTER&quot; verticalAlignment=&quot;CENTER&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;label text=&quot;コンピュータ&quot; /&gt;
+    &lt;composite /&gt;
+    &lt;label text=&quot;あなた&quot; /&gt;
+
+    &lt;label id=&quot;computerWinLabel&quot; text=&quot;0 勝&quot; /&gt;
+    &lt;composite /&gt;
+    &lt;label id=&quot;playerWinLabel&quot; text=&quot;0 勝&quot; /&gt;
+
+    &lt;label id=&quot;computerHandImage&quot; image=&quot;blank&quot; /&gt;
+    &lt;label text=&quot;vs&quot; fontHeight=&quot;100&quot;&gt;
+      &lt;gridData verticalAlignment=&quot;CENTER&quot;
+        grabExcessHorizontalSpace=&quot;true&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label id=&quot;playerHandImage&quot; image=&quot;blank&quot; /&gt;
+
+    &lt;label id=&quot;messageLabel&quot; text=&quot;じゃんけん・・・&quot; alignment=&quot;CENTER&quot;&gt;
+      &lt;gridData horizontalSpan=&quot;3&quot; horizontalAlignment=&quot;FILL&quot;/&gt;
+    &lt;/label&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout spacing=&quot;20&quot; marginWidth=&quot;20&quot; /&gt;
+      &lt;gridData horizontalSpan=&quot;3&quot; /&gt;
+
+      &lt;button id=&quot;guButton&quot; text=&quot;グー!&quot; /&gt;
+      &lt;button id=&quot;cyokiButton&quot; text=&quot;チョキ!&quot; /&gt;
+      &lt;button id=&quot;paButton&quot; text=&quot;パー!&quot; /&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<p>
+たとえば、このような画面定義XMLファイルからは、以下のような画面が表示されます。
+</p>
+
+<div align="center">
+	<img src="../images/diDeJanken.png" width="416" height="380">
+</div>
+
+<p>
+S2JFace の画面定義XMLファイルは、XML Schema で定義されています。スキーマファイルは、配布アーカイブ内の
+/s2-jface-0.1.0/src/main/resources/org/seasar/jface/component/factory/s2jface.xsd にあります。
+Eclipse-WTP 付属の XML エディタなど、XML Schema によるタグ補完に対応している XML エディタを使用すれば、
+補完機能により快適に XML を作成することができます。(なお、GUI による画面定義エディタは将来提供予定です)
+</p>
+
+<h3>画面定義 XML の構造</h3>
+<p>
+S2JFace の画面定義 XML は、1つの画面について1つのXMLファイルが対応し、template 要素をルートとします。
+</p>
+<p>
+template 要素の配下には、必ず window 要素を記述します。window 要素は、その名の通りウィンドウを表示するための要素です。
+id 属性では、画面の名前を指定します。これは、画面毎にユニークな値を指定します。
+title 属性では、ウィンドウに表示するタイトルを、backgroud 属性では、ウィンドウの背景色を指定しています。
+また、image 属性でウィンドウに表示するアイコンを指定することもできます。
+</p>
+<p>
+window 要素の配下にある commonAttributes 要素では、window 要素の配下にある他の GUI コンポーネント(label や button など)
+に共通な属性を指定することができます。
+background や forground、fontHeight など、共通で指定したい属性は commonAttributes 要素で指定しておくと、
+いちいち指定する必要がありません。
+</p>
+<p>
+次の gridLayout 要素は、GUI 部品を並べるためのレイアウトを指定する要素です。gridLayout を指定すると、
+SWT の GridLayout が window 要素の配下に適用されます。
+GUI 部品の配置は、各部品の x 属性、y 属性で絶対座標を指定することができますが、
+ウィンドウを可変サイズにしたアプリケーションでは、レイアウトを利用した方がウィンドウのサイズに従って
+部品が再配置されるため、見栄えが良くなるという利点があります。
+gridLayout の各属性は、SWT の GridLayout とまったく同じ属性が指定できますので、
+詳細は <a href="http://help.eclipse.org/help32/nftopic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/GridLayout.html">GridLayout の APIリファレンス</a>をご覧ください。
+(このあたりが SWT の知識が必要となる所以です)
+</p>
+<p>
+現在、S2JFace では、RowLayout、FillLayout、GridLayout の 3 種類が利用できます。
+</p>
+<p>
+SWTのレイアウト指定については、<a href="http://www13.plala.or.jp/observe/swt/swt_layout.html">こちらのサイト</a>が参考になるでしょう。
+</p>
+
+<p>
+次の label 要素は、文字通りテキストラベルを表示するためのものです。text 属性で指定した文字列が表示されます。
+</p>
+
+<p>
+composite 要素は通常、他の GUI 部品を格納するためのコンテナとして利用します。
+composite 要素には、window 要素と同じように commonAttributes や レイアウトが指定できます。
+(SWTをご存じの方は、SWT における Composite クラスと同様と思っていただければ良いでしょう)
+ここでは、空の GUI コンポーネントとして配置しています。(GridLayoutで横3列の配置としているため)
+</p>
+
+<p>
+gridData 要素は、親要素の配置情報を詳細に指定するためのもので、これも SWT における gridData と全く同じです。
+</p>
+
+<p>
+最後の button 要素はボタンを表示するためのものです。
+id 属性は画面表示とは直接関係はありませんが、後で紹介する MethodBinding と密接な関係を持っています。
+</p>
+
+<p>
+以上が、簡単な画面定義 XML の構造です。残念ながらリファレンスはまだ作成中ですが、
+<a href="components.html">こちら</a>のページを参考にすれば、だいたいの記述方法はわかると思います。
+</p>
+
+<h3>画面表示の方法</h3>
+<p>
+S2JFace で画面定義 XML ファイルを表示するには、まず、画面定義ファイルがクラスパスに通っている必要があります。
+また、画面で表示する画像ファイルなどのリソースも同様です。
+</p>
+<p>
+画面を表示するには、2つの方法があります。1つめは、起動引数として指定する方法です。
+</p>
+<p>
+以下のように、org.seasar.jface.S2JFace をメインクラスとしてJavaを実行し、第1引数に画面定義ファイルのパスを
+渡すだけで画面が表示されます。
+</p>
+<pre>
+java -cp (クラスパス) -Djava.library.path=c:/s2-jface-0.1.0/lib org.seasar.jface.S2JFace org/seasar/jface/example/janken/DIdeJanken.xml
+</pre>
+<p>
+この場合、画面定義ファイルは DIdeJanken.xml という名前で、
+クラスパス中の org/seasar/jface/example/janken/ というディレクトリに存在します。
+</p>
+
+<p>
+もう一つの方法は、プログラム内部から利用する方法です。
+以下のように、S2JFaceクラスの openWindow メソッドの引数として画面定義XMLのパスを渡します。
+</p>
+<pre>
+  S2JFace s2JFace = new S2JFace();
+  s2JFace.openWindow("org/seasar/jface/example/janken/DIdeJanken.xml");
+</pre>
+
+<h2><a name="methodBinding">メソッド・バインディング</a></h2>
+<p>
+S2JFace では、画面上にボタンが押されるなどのイベントが発生した際、
+S2Container に登録されたコンポーネント上のメソッドを呼び出すことができます。
+これを、<b>メソッド・バインディング(Method Binding)</b>と呼びます。
+メソッド・バインディングを利用すると、GUI プログラミングにありがちなリスナークラスを
+いちいち作成するという、面倒なコーディングから解放されます。
+</p>
+<h3>アクション・クラス</h3>
+<p>
+メソッド・バインディングにより画面から呼び出されるクラスのことを、
+S2JFace では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1となるように作成します。
+</p>
+<p>
+今まで Web アプリケーションを作成してきた方は、Web アプリケーションにおける Action クラス
+とほぼ同じ位置づけと理解していただければよいでしょう。
+</p>
+<p>
+アクション・クラスは、以下の命名規則で S2Container に登録します。
+</p>
+<pre>
+(画面の id (先頭を大文字にしたもの)) + Action
+</pre>
+<p>
+たとえば、画面の id (window 要素の id です)が、
+「hoge」の場合、「HogeAction」がアクション・クラスのコンポーネント名となります。
+</p>
+<p>
+<b>Convention over Configuration</b> の考え方により、設定ファイルを書かなくても画面と POJO が結びつけられるわけです。
+</p>
+
+<h3>メソッドの呼び出し</h3>
+<p>
+メソッド・バインディングでは、GUI コンポーネントの持つ id が、呼び出すメソッドを指定する役割を
+持ちます。
+まず、アクション・クラス上で呼び出されるメソッドは、必ず<code>@EventListener</code>が記述されており、
+引数なしのメソッドである必要があります。次に、GUI コンポーネントの id と同じ名前のメソッドが呼び出されます。
+</p>
+
+<p>
+たとえば、次のようなボタンがあった場合、
+</p>
+<pre>
+  &lt;button id=&quot;ok&quot; text=&quot;OK&quot; /&gt;
+</pre>
+<p>
+以下のようなメソッドと対応します。
+</p>
+<pre>
+@EventListener
+public void ok() {
+}
+</pre>
+
+<p>
+また、次のように <code>@EventListener</code> アノテーションの id 属性を明示的に指定することもできます。
+この場合、メソッド名は自由に決めることができます。
+</p>
+<pre>
+@EventListener(id=&quot;ok&quot;)
+public void onOkButton() {
+}
+</pre>
+
+<h3>イベントの指定</h3>
+<p>
+<code>@EventListener</code> アノテーションでは、type 属性により、呼び出されるイベントを指定することができます。
+たとえば、以下のような例では、ラベル上でマウスカーソルが動くたびにメソッドが呼び出されます。
+</p>
+
+<pre>
+@EventListener(type=EventListenerType.MOUSE_MOVE)
+public void label() {
+}
+</pre>
+
+<p>
+type 属性で指定する値は、<code>org.seasar.jface.annotation.EventListenerType</code> 
+クラスで定義されている定数を指定します。
+定数には以下のようなものがあり、SWT で定義されているすべてのイベントを指定できます。
+また、イベントの利用例については、<code>org.seasar.jface.annotation.EventListenerTypeTest</code> クラスをご覧ください。
+</p>
+
+<div align="center">
+<table class="view">
+	<tr><th>イベント</th></tr>
+	<tr><td>KEY_DOWN</td></tr>
+	<tr><td>KEY_UP</td></tr>
+	<tr><td>MOUSE_DOWN</td></tr>
+	<tr><td>MOUSE_UP</td></tr>
+	<tr><td>MOUSE_MOVE</td></tr>
+	<tr><td>MOUSE_ENTER</td></tr>
+	<tr><td>MOUSE_EXIT</td></tr>
+	<tr><td>MOUSE_DOUBLE_CLICK</td></tr>
+	<tr><td>MOUSE_HOVER</td></tr>
+	<tr><td>PAINT</td></tr>
+	<tr><td>MOVE</td></tr>
+	<tr><td>RESIZE</td></tr>
+	<tr><td>DISPOSE</td></tr>
+	<tr><td>SELECTION</td></tr>
+	<tr><td>DEFAULT_SELECTION</td></tr>
+	<tr><td>FOCUS_IN</td></tr>
+	<tr><td>FOCUS_OUT</td></tr>
+	<tr><td>EXPAND</td></tr>
+	<tr><td>COLLAPSE</td></tr>
+	<tr><td>ICONIFY</td></tr>
+	<tr><td>DEICONIFY</td></tr>
+	<tr><td>CLOSE</td></tr>
+	<tr><td>ACTIVATE</td></tr>
+	<tr><td>DEACTIVATE</td></tr>
+	<tr><td>SHOW</td></tr>
+	<tr><td>HIDE</td></tr>
+	<tr><td>MODIFY</td></tr>
+	<tr><td>VERIFY</td></tr>
+	<tr><td>HELP</td></tr>
+	<tr><td>ARM</td></tr>
+	<tr><td>TRAVERSE</td></tr>
+	<tr><td>DRAG_DETECT</td></tr>
+	<tr><td>HARD_KEY_DOWN</td></tr>
+	<tr><td>HARD_KEY_UP</td></tr>
+	<tr><td>MENU_DETECT</td></tr>
+	<tr><td>SET_DATA</td></tr>
+	<tr><td>MOUSE_WHEEL</td></tr>
+</table>
+</div>
+
+<h3>イニシャライズ・メソッド</h3>
+<p>
+アクション・クラスに <code>@Initialize</code> アノテーションが記述されたメソッドがある場合、
+画面を表示する直前にそのメソッドが呼び出されます。
+</p>
+
+<h2><a name="widgetInjection">ウィジット・インジェクション</a></h2>
+<p>
+GUI プログラミングでは、GUIオブジェクトの取り回しが煩雑で、しばしば汚いコードになりがちです。
+S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代入することができます。
+この機能を、<b>ウィジット・インジェクション(Widget Injection)</b>と呼びます。
+</p>
+<p>
+ウィジット・インジェクションでは、GUI コンポーネントの id と、アクション・クラス上のフィールド名が
+紐付きます。
+たとえば、以下のような GUI コンポーネントがあった場合、
+</p>
+<pre>
+  &lt;button id=&quot;button&quot; /&gt;
+</pre>
+<p>
+以下のように id と同じ名前のフィールドに、対応する Button オブジェクトがインジェクションされます。
+(もちろん、フィールドの型は GUI コンポーネントに対応する SWT の Widget である必要があります)
+また、インジェクションはフィールドに対して直接行われるため、setter メソッドを作成する必要はありません。
+</p>
+<pre>
+  private Button button;
+</pre>
+<p>
+このように、ウィジット・インジェクションを利用することでアクション・クラスに必要な
+ GUI コンポーネントのオブジェクトを直接得ることができるため、ソースコードを簡潔に記述することができます。
+</p>
+
+<h3>暗黙のGUIコンポーネント</h3>
+<p>
+S2JFace では、画面に対応した Shell オブジェクトが shell という名前で自動的に登録されます。
+従って、以下のように shell フィールドを用意するだけで、Shell オブジェクトを得ることができます。
+</p>
+<pre>
+  private Shell shell;
+</pre>
+
+<h2><a name="valueBinding">バリュー・バインディング</a></h2>
+
+<p>
+GUI アプリケーションにおいて、次のようば画面から値を入力する場面はよくあります。
+S2JFace では、画面上のテキストフィールドに入力された値を、直接 POJO ヘバインドすることができます。
+また、逆に画面の初期表示時にあらかじめテキストフィールドへ値を表示させておきたい場合、
+POJO のフィールドからテキストフィールドに値をバインドすることもできます。
+</p>
+<p>
+これらの機能を、<b>バリュー・バインディング(Value Binding)</b>と呼びます。
+</p>
+
+<div align="center">
+	<img src="../images/employeeEdit.png" width="183" height="259" alt="" />
+</div>
+
+<h3>フォーム・オブジェクト</h3>
+<p>
+バリュー・バインディングの対象となるのは、<b>フォーム・オブジェクト</b>と呼ばれる POJO です。
+フォーム・オブジェクトは、基本的に画面と1対1で対応しますが、新規作成画面と編集画面など、
+複数の画面から共通の入力項目を扱う場合もあるため、複数の画面に対して1つのフォーム・オブジェクトを
+割り当てることもできます。
+</p>
+
+<p>
+フォーム・オブジェクトは、アクション・クラスと同様に S2Container へコンポーネントとして登録します。
+その場合は、以下のような命名規則で名前を付けます。
+</p>
+
+<pre>
+(画面の id (先頭を大文字にしたもの)) + Form
+</pre>
+<p>
+たとえば、画面の id (window 要素の id です)が、
+「hoge」の場合、「HogeForm」がフォーム・オブジェクトのコンポーネント名となります。
+</p>
+
+<p>
+一方、複数の画面に対応するフォーム・オブジェクトを作成する場合、アクション・クラスにアノテーションで
+対応するフォーム・オブジェクトを指定します。
+以下のように、<code>@Form</code>アノテーションをアクション・クラスに指定し、
+その値でフォーム・オブジェクトのクラスを指定します。
+</p>
+
+<pre>
+@Form(EmployeeEditForm.class)
+public class EmployeeEditAction {
+}
+</pre>
+
+<p>
+フォーム・オブジェクトには、画面上の GUI コンポーネントの id と同じ名前のフィールドを用意します。
+上記の画面の画面定義 XML は、次のようなものです。
+</p>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;edit&quot; style=&quot;TITLE, CLOSE, PRIMARY_MODAL&quot; title=&quot;従業員情報編集&quot;
+    image=&quot;title&quot; defaultButtonId=&quot;ok&quot; defaultFocusId=&quot;ename&quot;&gt;
+    &lt;gridLayout numColumns=&quot;1&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+    &lt;/gridLayout&gt;
+    &lt;composite&gt;
+      &lt;gridLayout numColumns=&quot;2&quot;&gt;
+        &lt;gridData horizontalAlignment=&quot;FILL&quot; /&gt;
+      &lt;/gridLayout&gt;
+      &lt;label text=&quot;従業員No.&quot; /&gt;
+      &lt;text id=&quot;empno&quot; editable=&quot;false&quot;/&gt;
+      &lt;label text=&quot;従業員名&quot; /&gt;
+      &lt;text id=&quot;ename&quot; /&gt;
+      &lt;label text=&quot;役職&quot; /&gt;
+      &lt;text id=&quot;job&quot; /&gt;
+      &lt;label text=&quot;管理者No.&quot; /&gt;
+      &lt;text id=&quot;mgr&quot; /&gt;
+      &lt;label text=&quot;雇用日&quot; /&gt;
+      &lt;text id=&quot;hiredate&quot; /&gt;
+      &lt;label text=&quot;給与&quot; /&gt;
+      &lt;text id=&quot;sal&quot; /&gt;
+      &lt;label text=&quot;報奨金&quot; /&gt;
+      &lt;text id=&quot;comm&quot; /&gt;
+      &lt;label text=&quot;部署&quot; /&gt;
+      &lt;combo id=&quot;dept&quot; style=&quot;DROP_DOWN, READ_ONLY&quot; /&gt;
+    &lt;/composite&gt;
+    &lt;composite&gt;
+      &lt;fillLayout type=&quot;HORIZONTAL&quot; /&gt;
+      &lt;button id=&quot;ok&quot; text=&quot;OK&quot; /&gt;
+      &lt;button id=&quot;cancel&quot; text=&quot;キャンセル&quot; /&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<p>
+これに対応するフォームオブジェクトは、以下のような String 型のフィールドを持ちます。
+フィールド名は、対応する GUI コンポーネントの id と一致するようにします。
+</p>
+
+<pre>
+    private String empno;
+    private String ename;
+    private String job;
+    private String mgr;
+    private String hiredate;
+    private String sal;
+    private String comm;
+</pre>
+
+<h3>インポート・バリュー・バインディング</h3>
+<p>
+画面上の GUI コンポーネントに入力された値をフィールドにバインドするには、
+以下のようにフィールドに <code>@ImportValue</code> アノテーションを記述します。
+</p>
+
+<pre>
+    @ImportValue
+    private String empno;
+</pre>
+
+また、フィールド名と GUI コンポーネントの id が異なる場合、<code>@ImportValue</code>
+アノテーションの id 属性で指定します。
+
+<pre>
+    @ImportValue(id="empno")
+    private String employeeNo;
+</pre>
+
+<p>
+このようにすることで、メソッド・バインディングによりアクション・クラスのメソッドが
+呼び出されるタイミングで、バリュー・バインディングが行われます。
+</p>
+
+<h3>エクスポート・バリュー・バインディング</h3>
+<p>
+画面の表示した際、テキストフィールド等にフォーム・オブジェクトのフィールドの値を
+あらかじめ表示させたい場合、フィールドに <code>@ExportValue</code> アノテーションを
+記述します。
+</p>
+
+<pre>
+    @ExportValue
+    private String empno;
+</pre>
+
+<p>
+フィールド名と GUI コンポーネントの id が異なる場合、<code>@ImportValue</code> と同様に
+id 属性が使用できます。
+</p>
+
+<p>
+また、<code>@ImportValue</code> と <code>@ExportValue</code> を同時に指定する場合、
+<code>@ImportExportValue</code> を使ってまとめて記述することができます。
+つまり、以下の二つの記述は同じ意味になります。
+</p>
+
+<pre>
+    @ImportValue
+    @ExportValue
+    private String empno;
+</pre>
+
+<pre>
+    @ImportExportValue
+    private String empno;
+</pre>
+
+<p>
+コンボボックスやテーブルなど、複数の項目を表示するコンポーネントの場合、
+項目に対応する DTO(POJO) を要素として持つ List や配列をフォーム・オブジェクトのフィールドに持たせます。
+</p>
+
+<pre>
+    @ExportValue(id = "employeeTable")
+    private List&let;EmployeeDto&gt; employees;
+</pre>
+
+<p>
+DTO のフィールドのうち、画面に表示するものには、<code>@BindingLabel</code> アノテーションを
+記述します。テーブルにバインドする場合は、<code>@BindingLabel</code> アノテーションの
+column 属性で0から始まるカラム番号指定することで、どのフィールドを何番目の列に表示するかも
+指定することができます。
+</p>
+
+<h2><a name="selectionBinding">セレクション・バインディング</a></h2>
+<p>
+コンボボックスやリストなど、複数項目を扱うコンポーネントでは、
+選択状態をフォームオブジェクトに取得したり、逆に設定したりすることができます。
+このような機能を<b>セレクション・バインディング(Selection Binding)</b>と呼びます。
+</p>
+
+<h3>インポート・セレクション・バインディング</h3>
+<p>
+先ほどの画面で、コンボボックス(id は dept)の選択項目を得るには、以下のように
+<code>@ImportSelection</code> アノテーションをフィールドに記述します。
+フィールドの型は、バリュー・バインディングで指定した型と同じである必要があります。
+このように記述することで、コンボボックスで選択された項目に対応するオブジェクトが、
+フィールドへバインドされます。
+</p>
+
+<pre>
+    @ImportSelection(id = "dept")
+    private DepartmentDto selectedDepartmentDto;
+</pre>
+
+<h3>エクスポート・セレクション・バインディング</h3>
+<p>
+逆に、画面表示の際にあらかじめ選択項目を指定する場合、以下のように
+<code>@ExportSelection</code> アノテーションをフィールドに記述します。
+これで、フィールドの持つオブジェクトに対応する項目が選択されます。
+</p>
+
+<pre>
+    @ExportSelection(id = "dept")
+    private DepartmentDto selectedDepartmentDto;
+</pre>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">Copyright&copy; 2004-2006, The Seasar Foundation and the others. All rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>
