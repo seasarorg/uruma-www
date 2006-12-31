@@ -2,7 +2,7 @@
 <html>
 <!-- don't edit start -->
 <head>
-<title>Seasar - DI Container with AOP - </title>
+<title>S2JFace ドキュメント</title>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
@@ -19,7 +19,7 @@
 </tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
 <td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
 <td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
-<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/index.html#products"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
 <td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
 <td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
 <td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
@@ -29,6 +29,38 @@
 <!-- don't edit end -->
 <!-- document start -->
 <h1>S2JFace ドキュメント</h1>
+
+<ul>
+	<li><a href="#setup">セットアップ</a></li>
+	<li><a href="#functions">S2JFaceの提供する機能</a></li>
+	<li><a href="#viewXml">画面表示機能</a></li>
+	<ul>
+		<li><a href="#xmlStructure">画面定義 XML の構造</a></li>
+		<li><a href="#howtoDisplay">画面表示の方法</a></li>
+	</ul>
+	<li><a href="#methodBinding">メソッド・バインディング</a></li>
+	<ul>
+		<li><a href="#actionClass">アクション・クラス</a></li>
+		<li><a href="#methodCall">メソッドの呼び出し</a></li>
+		<li><a href="#event">イベントの指定</a></li>
+		<li><a href="#initializeMethod">イニシャライズ・メソッド</a></li>
+	</ul>
+	<li><a href="#widgetInjection">ウィジット・インジェクション</a></li>
+	<ul>
+		<li><a href="#implicitComponent">暗黙のGUIコンポーネント</a></li>
+	</ul>
+	<li><a href="#valueBinding">バリュー・バインディング</a></li>
+	<ul>
+		<li><a href="#formObject">フォーム・オブジェクト</a></li>
+		<li><a href="#importValueBinding">インポート・バリュー・バインディング</a></li>
+		<li><a href="#exportValuBinding">エクスポート・バリュー・バインディング</a></li>
+	</ul>
+	<li><a href="#selectionBinding">セレクション・バインディング</a></li>
+	<ul>
+		<li><a href="#importSelectionBinding">インポート・セレクション・バインディング</a></li>
+		<li><a href="#exportSelectionBinding">エクスポート・セレクション・バインディング</a></li>
+	</ul>
+</ul>
 
 <h2><a name="setup">セットアップ</a></h2>
 <p>
@@ -180,7 +212,7 @@ Eclipse-WTP 付属の XML エディタなど、XML Schema によるタグ補完に対応している XML
 補完機能により快適に XML を作成することができます。(なお、GUI による画面定義エディタは将来提供予定です)
 </p>
 
-<h3>画面定義 XML の構造</h3>
+<h3><a name="xmlStructure">画面定義 XML の構造</a></h3>
 <p>
 S2JFace の画面定義 XML は、1つの画面について1つのXMLファイルが対応し、template 要素をルートとします。
 </p>
@@ -238,7 +270,7 @@ id 属性は画面表示とは直接関係はありませんが、後で紹介する MethodBinding と密接な
 <a href="components.html">こちら</a>のページを参考にすれば、だいたいの記述方法はわかると思います。
 </p>
 
-<h3>画面表示の方法</h3>
+<h3><a name="howtoDisplay">画面表示の方法</a></h3>
 <p>
 S2JFace で画面定義 XML ファイルを表示するには、まず、画面定義ファイルがクラスパスに通っている必要があります。
 また、画面で表示する画像ファイルなどのリソースも同様です。
@@ -251,7 +283,8 @@ S2JFace で画面定義 XML ファイルを表示するには、まず、画面定義ファイルがクラスパ�
 渡すだけで画面が表示されます。
 </p>
 <pre>
-java -cp (クラスパス) -Djava.library.path=c:/s2-jface-0.1.0/lib org.seasar.jface.S2JFace org/seasar/jface/example/janken/DIdeJanken.xml
+java -cp (クラスパス) -Djava.library.path=c:/s2-jface-0.1.0/lib org.seasar.jface.S2JFace (続く)
+org/seasar/jface/example/janken/DIdeJanken.xml
 </pre>
 <p>
 この場合、画面定義ファイルは DIdeJanken.xml という名前で、
@@ -275,7 +308,7 @@ S2Container に登録されたコンポーネント上のメソッドを呼び出すことができます。
 メソッド・バインディングを利用すると、GUI プログラミングにありがちなリスナークラスを
 いちいち作成するという、面倒なコーディングから解放されます。
 </p>
-<h3>アクション・クラス</h3>
+<h3><a name="actionClass">アクション・クラス</a></h3>
 <p>
 メソッド・バインディングにより画面から呼び出されるクラスのことを、
 S2JFace では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1となるように作成します。
@@ -298,7 +331,7 @@ S2JFace では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1�
 <b>Convention over Configuration</b> の考え方により、設定ファイルを書かなくても画面と POJO が結びつけられるわけです。
 </p>
 
-<h3>メソッドの呼び出し</h3>
+<h3><a name="methodCall">メソッドの呼び出し</a></h3>
 <p>
 メソッド・バインディングでは、GUI コンポーネントの持つ id が、呼び出すメソッドを指定する役割を
 持ちます。
@@ -331,7 +364,7 @@ public void onOkButton() {
 }
 </pre>
 
-<h3>イベントの指定</h3>
+<h3><a name="event">イベントの指定</a></h3>
 <p>
 <code>@EventListener</code> アノテーションでは、type 属性により、呼び出されるイベントを指定することができます。
 たとえば、以下のような例では、ラベル上でマウスカーソルが動くたびにメソッドが呼び出されます。
@@ -349,51 +382,55 @@ type 属性で指定する値は、<code>org.seasar.jface.annotation.EventListenerType</co
 定数には以下のようなものがあり、SWT で定義されているすべてのイベントを指定できます。
 また、イベントの利用例については、<code>org.seasar.jface.annotation.EventListenerTypeTest</code> クラスをご覧ください。
 </p>
+<p>
+なお、type 属性に何も指定しない場合は、EventListenerType.SELECTION を指定したのと同じことになります。
+</p>
 
 <div align="center">
 <table class="view">
-	<tr><th>イベント</th></tr>
-	<tr><td>KEY_DOWN</td></tr>
-	<tr><td>KEY_UP</td></tr>
-	<tr><td>MOUSE_DOWN</td></tr>
-	<tr><td>MOUSE_UP</td></tr>
-	<tr><td>MOUSE_MOVE</td></tr>
-	<tr><td>MOUSE_ENTER</td></tr>
-	<tr><td>MOUSE_EXIT</td></tr>
-	<tr><td>MOUSE_DOUBLE_CLICK</td></tr>
-	<tr><td>MOUSE_HOVER</td></tr>
-	<tr><td>PAINT</td></tr>
-	<tr><td>MOVE</td></tr>
-	<tr><td>RESIZE</td></tr>
-	<tr><td>DISPOSE</td></tr>
-	<tr><td>SELECTION</td></tr>
-	<tr><td>DEFAULT_SELECTION</td></tr>
-	<tr><td>FOCUS_IN</td></tr>
-	<tr><td>FOCUS_OUT</td></tr>
-	<tr><td>EXPAND</td></tr>
-	<tr><td>COLLAPSE</td></tr>
-	<tr><td>ICONIFY</td></tr>
-	<tr><td>DEICONIFY</td></tr>
-	<tr><td>CLOSE</td></tr>
-	<tr><td>ACTIVATE</td></tr>
-	<tr><td>DEACTIVATE</td></tr>
-	<tr><td>SHOW</td></tr>
-	<tr><td>HIDE</td></tr>
-	<tr><td>MODIFY</td></tr>
-	<tr><td>VERIFY</td></tr>
-	<tr><td>HELP</td></tr>
-	<tr><td>ARM</td></tr>
-	<tr><td>TRAVERSE</td></tr>
-	<tr><td>DRAG_DETECT</td></tr>
-	<tr><td>HARD_KEY_DOWN</td></tr>
-	<tr><td>HARD_KEY_UP</td></tr>
-	<tr><td>MENU_DETECT</td></tr>
-	<tr><td>SET_DATA</td></tr>
-	<tr><td>MOUSE_WHEEL</td></tr>
+	<tr><th>イベント</th><th>説明</th><th>イベント</th><th>説明</th></tr>
+	<tr><td>KEY_DOWN</td><td>キーを押したとき</td>
+	<td>ICONIFY</td><td>ウィンドウがアイコン化されたとき</td></tr>
+	<tr><td>KEY_UP</td><td>キーを離したとき</td>
+	<td>DEICONIFY</td><td>ウィンドウがアイコン化状態から元に戻ったとき</td></tr>
+	<tr><td>MOUSE_DOWN</td><td>マウスのボタンを押したとき</td>
+	<td>CLOSE</td><td>ウィンドウがクローズされるとき</td></tr>
+	<tr><td>MOUSE_UP</td><td>マウスのボタンを放したとき</td>
+	<td>ACTIVATE</td><td>ウィンドウがアクティブ化されたとき</td></tr>
+	<tr><td>MOUSE_MOVE</td><td>マウスカーソルを動かしたとき</td>
+	<td>DEACTIVATE</td><td>ウィンドウが非アクティブ化されたとき</td></tr>
+	<tr><td>MOUSE_ENTER</td><td>マウスカーソルがコンポーネント上に入ったとき</td>
+	<td>SHOW</td><td>メニューが表示されたとき</td></tr>
+	<tr><td>MOUSE_EXIT</td><td>マウスカーソルがコンポーネント上から出たとき</td>
+	<td>HIDE</td><td>メニューが非表示になったとき</td></tr>
+	<tr><td>MOUSE_DOUBLE_CLICK</td><td>ダブルクリックするとき</td>
+	<td>MODIFY</td><td></td></tr>
+	<tr><td>MOUSE_HOVER</td><td>マウスカーソルを動かしたとき</td>
+	<td>VERIFY</td><td></td></tr>
+	<tr><td>PAINT</td><td>コンポーネントを描画するとき</td>
+	<td>HELP</td><td></td></tr>
+	<tr><td>MOVE</td><td>コンポーネントが移動したとき</td>
+	<td>ARM</td><td></td></tr>
+	<tr><td>RESIZE</td><td>コンポーネントのサイズが変更されたとき</td>
+	<td>TRAVERSE</td><td></td></tr>
+	<tr><td>DISPOSE</td><td>コンポーネントが破棄されたとき</td>
+	<td>DRAG_DETECT</td><td>ドラッグされたとき</td></tr>
+	<tr><td>SELECTION</td><td>コンポーネントが選択されたとき</td>
+	<td>HARD_KEY_DOWN</td><td>キーが押されたとき</td></tr>
+	<tr><td>DEFAULT_SELECTION</td><td>デフォルトのコンポーネントが選択されたとき</td>
+	<td>HARD_KEY_UP</td><td>キーが離されたとき</td></tr>
+	<tr><td>FOCUS_IN</td><td>コンポーネントにフォーカスが移ったとき</td>
+	<td>MENU_DETECT</td><td></td></tr>
+	<tr><td>FOCUS_OUT</td><td>コンポーネントからフォーカスがはずれたとき</td>
+	<td>SET_DATA</td><td></td></tr>
+	<tr><td>EXPAND</td><td>ツリーの項目が展開されたとき</td>
+	<td>MOUSE_WHEEL</td><td>マウスホイールが回転したとき</td></tr>
+	<tr><td>COLLAPSE</td><td>ツリーの項目が折りたたまれたとき</td>
+	<td></td><td></td></tr>
 </table>
 </div>
 
-<h3>イニシャライズ・メソッド</h3>
+<h3><a name="initializeMethod">イニシャライズ・メソッド</a></h3>
 <p>
 アクション・クラスに <code>@Initialize</code> アノテーションが記述されたメソッドがある場合、
 画面を表示する直前にそのメソッドが呼び出されます。
@@ -426,7 +463,7 @@ S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代�
  GUI コンポーネントのオブジェクトを直接得ることができるため、ソースコードを簡潔に記述することができます。
 </p>
 
-<h3>暗黙のGUIコンポーネント</h3>
+<h3><a name="implicitComponent">暗黙のGUIコンポーネント</a></h3>
 <p>
 S2JFace では、画面に対応した Shell オブジェクトが shell という名前で自動的に登録されます。
 従って、以下のように shell フィールドを用意するだけで、Shell オブジェクトを得ることができます。
@@ -451,7 +488,7 @@ POJO のフィールドからテキストフィールドに値をバインドすることもできます。
 	<img src="../images/employeeEdit.png" width="183" height="259" alt="" />
 </div>
 
-<h3>フォーム・オブジェクト</h3>
+<h3><a name="formObject">フォーム・オブジェクト</a></h3>
 <p>
 バリュー・バインディングの対象となるのは、<b>フォーム・オブジェクト</b>と呼ばれる POJO です。
 フォーム・オブジェクトは、基本的に画面と1対1で対応しますが、新規作成画面と編集画面など、
@@ -543,7 +580,7 @@ public class EmployeeEditAction {
     private String comm;
 </pre>
 
-<h3>インポート・バリュー・バインディング</h3>
+<h3><a name="importValueBinding">インポート・バリュー・バインディング</a></h3>
 <p>
 画面上の GUI コンポーネントに入力された値をフィールドにバインドするには、
 以下のようにフィールドに <code>@ImportValue</code> アノテーションを記述します。
@@ -567,7 +604,7 @@ public class EmployeeEditAction {
 呼び出されるタイミングで、バリュー・バインディングが行われます。
 </p>
 
-<h3>エクスポート・バリュー・バインディング</h3>
+<h3><a name="exportValuBinding">エクスポート・バリュー・バインディング</a></h3>
 <p>
 画面の表示した際、テキストフィールド等にフォーム・オブジェクトのフィールドの値を
 あらかじめ表示させたい場合、フィールドに <code>@ExportValue</code> アノテーションを
@@ -625,7 +662,7 @@ column 属性で0から始まるカラム番号指定することで、どのフィールドを何番目の列に表
 このような機能を<b>セレクション・バインディング(Selection Binding)</b>と呼びます。
 </p>
 
-<h3>インポート・セレクション・バインディング</h3>
+<h3><a name="importSelectionBinding">インポート・セレクション・バインディング</a></h3>
 <p>
 先ほどの画面で、コンボボックス(id は dept)の選択項目を得るには、以下のように
 <code>@ImportSelection</code> アノテーションをフィールドに記述します。
@@ -639,7 +676,7 @@ column 属性で0から始まるカラム番号指定することで、どのフィールドを何番目の列に表
     private DepartmentDto selectedDepartmentDto;
 </pre>
 
-<h3>エクスポート・セレクション・バインディング</h3>
+<h3><a name="exportSelectionBinding">エクスポート・セレクション・バインディング</a></h3>
 <p>
 逆に、画面表示の際にあらかじめ選択項目を指定する場合、以下のように
 <code>@ExportSelection</code> アノテーションをフィールドに記述します。
