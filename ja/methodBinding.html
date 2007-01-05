@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク S2JFace - メソッド・バインディング</title>
+<link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h1 id="h01" class="hide">The Seasar Project</h1><img src="../images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="Shift-JIS" />
+	<input id="search_go" type="submit" value="検索" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="../images/seasar_banner.gif"><img src="../images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+<div id="navi">
+<!--
+<p>English | Japanese</p>
+-->
+</div>
+
+</div><!-- header -->
+
+<div id="contents_left">
+
+<h2>メニュー</h2>
+<ul>
+	<li><a href="index.html">トップページ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+</ul>
+
+
+<h2>ドキュメント</h2>
+<ul>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="viewXml.html">画面表示機能</a></li>
+	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
+	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
+	<li><a href="valueBinding.html">バリュー・バインディング</a></li>
+	<li><a href="selectionBinding.html">セレクション・バインディング</a></li>
+	<li><a href="components.html">GUIコンポーネント一覧</a></li>
+	<li><a href="apidocs/index.html">APIリファレンス</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+<h2><a name="methodBinding">メソッド・バインディング</a></h2>
+<p>
+S2JFace では、画面上にボタンが押されるなどのイベントが発生した際、
+S2Container に登録されたコンポーネント上のメソッドを呼び出すことができます。
+これを、<b>メソッド・バインディング(Method Binding)</b>と呼びます。
+メソッド・バインディングを利用すると、GUI プログラミングにありがちなリスナークラスを
+いちいち作成するという、面倒なコーディングから解放されます。
+</p>
+<h3><a name="actionClass">アクション・クラス</a></h3>
+<p>
+メソッド・バインディングにより画面から呼び出されるクラスのことを、
+S2JFace では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1となるように作成します。
+</p>
+<p>
+今まで Web アプリケーションを作成してきた方は、Web アプリケーションにおける Action クラス
+とほぼ同じ位置づけと理解していただければよいでしょう。
+</p>
+<p>
+アクション・クラスは、以下の命名規則で S2Container に登録します。
+</p>
+<pre>
+(画面の id (先頭を大文字にしたもの)) + Action
+</pre>
+<p>
+たとえば、画面の id (window 要素の id です)が、
+「hoge」の場合、「HogeAction」がアクション・クラスのコンポーネント名となります。
+</p>
+<p>
+<b>Convention over Configuration</b> の考え方により、設定ファイルを書かなくても画面と POJO が結びつけられるわけです。
+</p>
+
+<h3><a name="methodCall">メソッドの呼び出し</a></h3>
+<p>
+メソッド・バインディングでは、GUI コンポーネントの持つ id が、呼び出すメソッドを指定する役割を
+持ちます。
+まず、アクション・クラス上で呼び出されるメソッドは、必ず<code>@EventListener</code>が記述されており、
+引数なしのメソッドである必要があります。次に、GUI コンポーネントの id と同じ名前のメソッドが呼び出されます。
+</p>
+
+<p>
+たとえば、次のようなボタンがあった場合、
+</p>
+<pre>
+  &lt;button id=&quot;ok&quot; text=&quot;OK&quot; /&gt;
+</pre>
+<p>
+以下のようなメソッドと対応します。
+</p>
+<pre>
+@EventListener
+public void ok() {
+}
+</pre>
+
+<p>
+また、次のように <code>@EventListener</code> アノテーションの id 属性を明示的に指定することもできます。
+この場合、メソッド名は自由に決めることができます。
+</p>
+<pre>
+@EventListener(id=&quot;ok&quot;)
+public void onOkButton() {
+}
+</pre>
+
+<h3><a name="event">イベントの指定</a></h3>
+<p>
+<code>@EventListener</code> アノテーションでは、type 属性により、呼び出されるイベントを指定することができます。
+たとえば、以下のような例では、ラベル上でマウスカーソルが動くたびにメソッドが呼び出されます。
+</p>
+
+<pre>
+@EventListener(type=EventListenerType.MOUSE_MOVE)
+public void label() {
+}
+</pre>
+
+<p>
+type 属性で指定する値は、<code>org.seasar.jface.annotation.EventListenerType</code> 
+クラスで定義されている定数を指定します。
+定数には以下のようなものがあり、SWT で定義されているすべてのイベントを指定できます。
+また、イベントの利用例については、<code>org.seasar.jface.annotation.EventListenerTypeTest</code> クラスをご覧ください。
+</p>
+<p>
+なお、type 属性に何も指定しない場合は、EventListenerType.SELECTION を指定したのと同じことになります。
+</p>
+
+<div align="center">
+<table class="view">
+	<tr><th>イベント</th><th>説明</th><th>イベント</th><th>説明</th></tr>
+	<tr><td>KEY_DOWN</td><td>キーを押したとき</td>
+	<td>ICONIFY</td><td>ウィンドウがアイコン化されたとき</td></tr>
+	<tr><td>KEY_UP</td><td>キーを離したとき</td>
+	<td>DEICONIFY</td><td>ウィンドウがアイコン化状態から元に戻ったとき</td></tr>
+	<tr><td>MOUSE_DOWN</td><td>マウスのボタンを押したとき</td>
+	<td>CLOSE</td><td>ウィンドウがクローズされるとき</td></tr>
+	<tr><td>MOUSE_UP</td><td>マウスのボタンを放したとき</td>
+	<td>ACTIVATE</td><td>ウィンドウがアクティブ化されたとき</td></tr>
+	<tr><td>MOUSE_MOVE</td><td>マウスカーソルを動かしたとき</td>
+	<td>DEACTIVATE</td><td>ウィンドウが非アクティブ化されたとき</td></tr>
+	<tr><td>MOUSE_ENTER</td><td>マウスカーソルがコンポーネント上に入ったとき</td>
+	<td>SHOW</td><td>メニューが表示されたとき</td></tr>
+	<tr><td>MOUSE_EXIT</td><td>マウスカーソルがコンポーネント上から出たとき</td>
+	<td>HIDE</td><td>メニューが非表示になったとき</td></tr>
+	<tr><td>MOUSE_DOUBLE_CLICK</td><td>ダブルクリックするとき</td>
+	<td>MODIFY</td><td></td></tr>
+	<tr><td>MOUSE_HOVER</td><td>マウスカーソルを動かしたとき</td>
+	<td>VERIFY</td><td></td></tr>
+	<tr><td>PAINT</td><td>コンポーネントを描画するとき</td>
+	<td>HELP</td><td></td></tr>
+	<tr><td>MOVE</td><td>コンポーネントが移動したとき</td>
+	<td>ARM</td><td></td></tr>
+	<tr><td>RESIZE</td><td>コンポーネントのサイズが変更されたとき</td>
+	<td>TRAVERSE</td><td></td></tr>
+	<tr><td>DISPOSE</td><td>コンポーネントが破棄されたとき</td>
+	<td>DRAG_DETECT</td><td>ドラッグされたとき</td></tr>
+	<tr><td>SELECTION</td><td>コンポーネントが選択されたとき</td>
+	<td>HARD_KEY_DOWN</td><td>キーが押されたとき</td></tr>
+	<tr><td>DEFAULT_SELECTION</td><td>デフォルトのコンポーネントが選択されたとき</td>
+	<td>HARD_KEY_UP</td><td>キーが離されたとき</td></tr>
+	<tr><td>FOCUS_IN</td><td>コンポーネントにフォーカスが移ったとき</td>
+	<td>MENU_DETECT</td><td></td></tr>
+	<tr><td>FOCUS_OUT</td><td>コンポーネントからフォーカスがはずれたとき</td>
+	<td>SET_DATA</td><td></td></tr>
+	<tr><td>EXPAND</td><td>ツリーの項目が展開されたとき</td>
+	<td>MOUSE_WHEEL</td><td>マウスホイールが回転したとき</td></tr>
+	<tr><td>COLLAPSE</td><td>ツリーの項目が折りたたまれたとき</td>
+	<td></td><td></td></tr>
+</table>
+</div>
+
+<h3><a name="initializeMethod">イニシャライズ・メソッド</a></h3>
+<p>
+アクション・クラスに <code>@Initialize</code> アノテーションが記述されたメソッドがある場合、
+画面を表示する直前にそのメソッドが呼び出されます。
+</p>
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2004-2007, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>

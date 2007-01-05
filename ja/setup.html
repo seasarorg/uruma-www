@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク S2JFace - セットアップ</title>
+<link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h1 id="h01" class="hide">The Seasar Project</h1><img src="../images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="Shift-JIS" />
+	<input id="search_go" type="submit" value="検索" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="../images/seasar_banner.gif"><img src="../images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+<div id="navi">
+<!--
+<p>English | Japanese</p>
+-->
+</div>
+
+</div><!-- header -->
+
+<div id="contents_left">
+
+<h2>メニュー</h2>
+<ul>
+	<li><a href="index.html">トップページ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+</ul>
+
+<h2>ドキュメント</h2>
+<ul>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="viewXml.html">画面表示機能</a></li>
+	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
+	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
+	<li><a href="valueBinding.html">バリュー・バインディング</a></li>
+	<li><a href="selectionBinding.html">セレクション・バインディング</a></li>
+	<li><a href="components.html">GUIコンポーネント一覧</a></li>
+	<li><a href="apidocs/index.html">APIリファレンス</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+<h2><a name="setup">セットアップ</a></h2>
+<h3>動作環境</h3>
+<p>
+S2JFace は、<b>Java SE 5.0 以降</b>の環境で動作します。
+</p>
+
+<h3>依存プロダクト</h3>
+<p>
+S2JFace を利用するには、S2JFace 本体の他に以下のプロダクトが必要です。
+(それぞれ、<a href="http://s2container.seasar.org/ja/#download">ダウンロードサイト</a>からダウンロードしてください)
+</p>
+<ul>
+	<li>S2Container 2.4.7 以降</li>
+	<li>S2Tiger 2.4.7 以降</li>
+</ul>
+
+<h3>クラスパス</h3>
+<p>
+具体的には、以下のJarファイルがクラスパスに通っている必要があります。
+</p>
+<div align="center">
+	<table class="view">
+		<tr><th>Jarファイル</th><th>配布プロダクト</th></tr>
+		<tr><td>s2-jface-0.1.0.jar</td><td rowspan="6">S2JFace</td></tr>
+		<tr><td>eclipse-common-1.0-SNAPSHOT.jar</td></tr>
+		<tr><td>jface-3.2.0.jar</td></tr>
+		<tr><td>swt-win32-win32-x86-3.2.0.jar</td></tr>
+		<tr><td>core-commands-3.2.0.jar</td></tr>
+		<tr><td>equinox-common-3.2.0.jar</td></tr>
+		<tr><td>s2-framework-2.4.7.jar</td><td rowspan="7">S2Container</td></tr>
+		<tr><td>s2-extension-2.4.7.jar</td></tr>
+		<tr><td>aopalliance-1.0.jar</td></tr>
+		<tr><td>commons-logging-1.1.jar</td></tr>
+		<tr><td>geronimo-j2ee_1.4_spec-1.0.jar</td></tr>
+		<tr><td>javassist-3.4.ga.jar</td></tr>
+		<tr><td>ognl-2.6.7.jar</td></tr>
+		<tr><td>s2-tiger-2.4.7.jar</td><td>S2Tiger</td></tr>
+	</table>
+</div>
+
+<h3>ライブラリパス</h3>
+<p>
+また、S2JFace では GUIツールキットとして <a href="http://www.eclipse.org/swt/">SWT</a> を
+利用します。そのため、Javaの起動オプションに以下の設定を追加する必要があります。
+</p>
+
+<pre>
+-Djava.library.path=(SWTライブラリのパス)
+</pre>
+
+<p>
+ここで、「SWTライブラリのパス」とは、swt-xxx-yyyy.dll が存在するパスです。
+これらのファイルは S2JFace 配布アーカイブの lib ディレクトリに添付されているので、
+たとえば以下のように指定してください。
+</p>
+
+<pre>
+-Djava.library.path=c:/s2-jface-0.1.0/lib
+</pre>
+
+参考までに、上記をまとめた Java の起動オプションは、以下のようになります。
+<pre>
+java -cp lib/s2-jface-0.1.0.jar;lib/eclipse-common-1.0-SNAPSHOT.jar;lib/jface-3.2.0.jar;
+lib/swt-win32-win32-x86-3.2.0.jar;lib/core-commands-3.2.0.jar;lib/equinox-common-3.2.0.jar;
+lib/s2-framework-2.4.7.jar;lib/s2-extension-2.4.7.jar;lib/aopalliance-1.0.jar;
+lib/commons-logging-1.1.jar;lib/geronimo-j2ee_1.4_spec-1.0.jar;lib/javassist-3.4.ga.jar;
+lib/ognl-2.6.7.jar;lib/s2-tiger-2.4.7.jar -Djava.library.path=c:/s2-jface-0.1.0/lib
+(実行するアプリケーションのメインクラス)
+</pre>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2004-2007, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>

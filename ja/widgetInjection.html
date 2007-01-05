@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク S2JFace - ウィジット・インジェクション</title>
+<link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h1 id="h01" class="hide">The Seasar Project</h1><img src="../images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="Shift-JIS" />
+	<input id="search_go" type="submit" value="検索" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="../images/seasar_banner.gif"><img src="../images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+<div id="navi">
+<!--
+<p>English | Japanese</p>
+-->
+</div>
+
+</div><!-- header -->
+
+<div id="contents_left">
+
+<h2>メニュー</h2>
+<ul>
+	<li><a href="index.html">トップページ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+</ul>
+
+
+<h2>ドキュメント</h2>
+<ul>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="viewXml.html">画面表示機能</a></li>
+	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
+	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
+	<li><a href="valueBinding.html">バリュー・バインディング</a></li>
+	<li><a href="selectionBinding.html">セレクション・バインディング</a></li>
+	<li><a href="components.html">GUIコンポーネント一覧</a></li>
+	<li><a href="apidocs/index.html">APIリファレンス</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+<h2><a name="widgetInjection">ウィジット・インジェクション</a></h2>
+<p>
+GUI プログラミングでは、GUIオブジェクトの取り回しが煩雑で、しばしば汚いコードになりがちです。
+S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代入することができます。
+この機能を、<b>ウィジット・インジェクション(Widget Injection)</b>と呼びます。
+</p>
+<p>
+ウィジット・インジェクションでは、GUI コンポーネントの id と、アクション・クラス上のフィールド名が
+紐付きます。
+たとえば、以下のような GUI コンポーネントがあった場合、
+</p>
+<pre>
+  &lt;button id=&quot;button&quot; /&gt;
+</pre>
+<p>
+以下のように id と同じ名前のフィールドに、対応する Button オブジェクトがインジェクションされます。
+(もちろん、フィールドの型は GUI コンポーネントに対応する SWT の Widget である必要があります)
+また、インジェクションはフィールドに対して直接行われるため、setter メソッドを作成する必要はありません。
+</p>
+<pre>
+  private Button button;
+</pre>
+<p>
+このように、ウィジット・インジェクションを利用することでアクション・クラスに必要な
+ GUI コンポーネントのオブジェクトを直接得ることができるため、ソースコードを簡潔に記述することができます。
+</p>
+
+<h3><a name="implicitComponent">暗黙のGUIコンポーネント</a></h3>
+<p>
+S2JFace では、画面に対応した Shell オブジェクトが shell という名前で自動的に登録されます。
+従って、以下のように shell フィールドを用意するだけで、Shell オブジェクトを得ることができます。
+</p>
+<pre>
+  private Shell shell;
+</pre>
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2004-2007, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
