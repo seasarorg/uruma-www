@@ -1,0 +1,28 @@
+-classpath 'D:/Develop/s2jface/target/classes;C:/.m2/repository/junit/junit/4.1/junit-4.1.jar;C:/.m2/repository/org/eclipse/core-commands/3.2.0/core-commands-3.2.0.jar;C:/.m2/repository/poi/poi/2.5.1-final-20040804/poi-2.5.1-final-20040804.jar;C:/.m2/repository/ognl/ognl/2.6.7/ognl-2.6.7.jar;C:/.m2/repository/org/seasar/container/s2-tiger/2.4.7/s2-tiger-2.4.7.jar;C:/.m2/repository/org/seasar/container/s2-framework/2.4.7/s2-framework-2.4.7.jar;C:/.m2/repository/org/eclipse/jface/3.2.0/jface-3.2.0.jar;C:/.m2/repository/org/seasar/eclipsecommon/eclipse-common/1.0-SNAPSHOT/eclipse-common-1.0-SNAPSHOT.jar;C:/.m2/repository/org/seasar/container/s2-extension/2.4.7/s2-extension-2.4.7.jar;C:/.m2/repository/commons-logging/commons-logging/1.1/commons-logging-1.1.jar;C:/.m2/repository/org/eclipse/swt-win32-win32-x86/3.2.0/swt-win32-win32-x86-3.2.0.jar;C:/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar;C:/.m2/repository/jboss/javassist/3.4.ga/javassist-3.4.ga.jar' -encoding
+'UTF-8'
+-protected
+-sourcepath
+'D:/Develop/s2jface/src/main/java'
+-author
+-bottom
+'Copyright &copy; 2006 <a href="http://www.seasar.org/">The Seasar Foundation</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'D:/Develop/s2jface/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'S2JFace 0.1.0 API Specifications'
+-link
+'http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/'
+-link
+'http://java.sun.com/javaee/5/docs/api/'
+-link
+'http://aopalliance.sourceforge.net/doc/'
+-link
+'http://help.eclipse.org/help32/nftopic/org.eclipse.platform.doc.isv/reference/api/'
+-use
+-version
+-windowtitle
+'S2JFace API Specifications'

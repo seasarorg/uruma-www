@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク S2JFace - GUIコンポーネント一覧</title>
+<link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+
+<div class="line"><span class="hide">spacer</span></div>
+
+<div id="logo"><h1 id="h01" class="hide">The Seasar Project</h1><img src="../images/seasar_logo_blue.gif" alt="The Seasar Project" width="390" height="180" /></div>
+
+<div id="tool">
+
+<h2><a href="http://search.seasar.org/">Site Search</a></h2>
+
+<form id="search" name="search" action="http://search.seasar.org/">
+<div>
+	<input id="search_phrase" type="text" name="phrase" size="20" />
+	<input type="hidden" name="perpage" value="30" />
+	<input type="hidden" name="enc" value="Shift-JIS" />
+	<input id="search_go" type="submit" value="検索" />
+</div>
+</form>
+
+<h2>Seasar Banner</h2>
+
+<p><a href="../images/seasar_banner.gif"><img src="../images/seasar_banner.gif" alt="Seasar Banner" title="Seasar Banner" width="146" height="33" /></a></p>
+
+</div>
+
+<div id="navi">
+<!--
+<p>English | Japanese</p>
+-->
+</div>
+
+</div><!-- header -->
+
+<div id="contents_left">
+
+<h2>メニュー</h2>
+<ul>
+	<li><a href="index.html">トップページ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="download.html">ダウンロード</a></li>
+</ul>
+
+
+<h2>ドキュメント</h2>
+<ul>
+	<li><a href="setup.html">セットアップ</a></li>
+	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="viewXml.html">画面表示機能</a></li>
+	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
+	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
+	<li><a href="valueBinding.html">バリュー・バインディング</a></li>
+	<li><a href="selectionBinding.html">セレクション・バインディング</a></li>
+	<li><a href="components.html">GUIコンポーネント一覧</a></li>
+	<li><a href="apidocs/index.html">APIリファレンス</a></li>
+</ul>
+
+</div><!-- contents_left -->
+
+<div id="contents_center">
+
+<div id="article">
+
+<div class="section">
+<h2><a name="viewXml">画面表示機能</a></h2>
+<p>S2JFaceでは、画面定義情報が記述されたXMLファイルを読み込んで、画面を表示することができます。
+これにより、画面表示のための面倒なコーディングを行わなくとも、GUI画面を簡単に作成することができます。</p>
+
+<p>
+残念ながら、現在のところ、S2JFace の画面定義を作成するにはある程度 SWT に関する知識が必要になります。
+(とはいっても、そんなに難しいものではありませんが・・・)
+しかし、将来的には SWT の知識がなくても、画面定義ファイルを作成できるよう、簡便化していく予定です。
+</p>
+
+<p>
+なお、S2JFace は現在開発中であるため、ここで紹介する画面定義 XML の仕様は
+<font color="red">将来変更される可能性があります</font>。何卒、ご了承ください。
+</p>
+
+<p>
+さて、実際に画面定義 XML の例を見てみましょう。
+</p>
+
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+  &lt;window id=&quot;janken&quot; title=&quot;DIでジャンケン&quot; image=&quot;container.gif&quot; background=&quot;white&quot;&gt;
+    &lt;commonAttributes background=&quot;white&quot; foreground=&quot;black&quot; fontHeight=&quot;50&quot;/&gt;
+    &lt;gridLayout numColumns=&quot;3&quot; marginHeight=&quot;5&quot; marginWidth=&quot;5&quot;&gt;
+      &lt;gridData horizontalAlignment=&quot;CENTER&quot; verticalAlignment=&quot;CENTER&quot; /&gt;
+    &lt;/gridLayout&gt;
+
+    &lt;label text=&quot;コンピュータ&quot; /&gt;
+    &lt;composite /&gt;
+    &lt;label text=&quot;あなた&quot; /&gt;
+
+    &lt;label id=&quot;computerWinLabel&quot; text=&quot;0 勝&quot; /&gt;
+    &lt;composite /&gt;
+    &lt;label id=&quot;playerWinLabel&quot; text=&quot;0 勝&quot; /&gt;
+
+    &lt;label id=&quot;computerHandImage&quot; image=&quot;blank&quot; /&gt;
+    &lt;label text=&quot;vs&quot; fontHeight=&quot;100&quot;&gt;
+      &lt;gridData verticalAlignment=&quot;CENTER&quot;
+        grabExcessHorizontalSpace=&quot;true&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label id=&quot;playerHandImage&quot; image=&quot;blank&quot; /&gt;
+
+    &lt;label id=&quot;messageLabel&quot; text=&quot;じゃんけん・・・&quot; alignment=&quot;CENTER&quot;&gt;
+      &lt;gridData horizontalSpan=&quot;3&quot; horizontalAlignment=&quot;FILL&quot;/&gt;
+    &lt;/label&gt;
+
+    &lt;composite&gt;
+      &lt;fillLayout spacing=&quot;20&quot; marginWidth=&quot;20&quot; /&gt;
+      &lt;gridData horizontalSpan=&quot;3&quot; /&gt;
+
+      &lt;button id=&quot;guButton&quot; text=&quot;グー!&quot; /&gt;
+      &lt;button id=&quot;cyokiButton&quot; text=&quot;チョキ!&quot; /&gt;
+      &lt;button id=&quot;paButton&quot; text=&quot;パー!&quot; /&gt;
+    &lt;/composite&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+</pre>
+
+<p>
+たとえば、このような画面定義XMLファイルからは、以下のような画面が表示されます。
+</p>
+
+<div align="center">
+	<img src="../images/diDeJanken.png" width="416" height="380">
+</div>
+
+<p>
+S2JFace の画面定義XMLファイルは、XML Schema で定義されています。スキーマファイルは、配布アーカイブ内の
+/s2-jface-0.1.0/src/main/resources/org/seasar/jface/component/factory/s2jface.xsd にあります。
+Eclipse-WTP 付属の XML エディタなど、XML Schema によるタグ補完に対応している XML エディタを使用すれば、
+補完機能により快適に XML を作成することができます。(なお、GUI による画面定義エディタは将来提供予定です)
+</p>
+
+<h3><a name="xmlStructure">画面定義 XML の構造</a></h3>
+<p>
+S2JFace の画面定義 XML は、1つの画面について1つのXMLファイルが対応し、template 要素をルートとします。
+</p>
+<p>
+template 要素の配下には、必ず window 要素を記述します。window 要素は、その名の通りウィンドウを表示するための要素です。
+id 属性では、画面の名前を指定します。これは、画面毎にユニークな値を指定します。
+title 属性では、ウィンドウに表示するタイトルを、backgroud 属性では、ウィンドウの背景色を指定しています。
+また、image 属性でウィンドウに表示するアイコンを指定することもできます。
+</p>
+<p>
+window 要素の配下にある commonAttributes 要素では、window 要素の配下にある他の GUI コンポーネント(label や button など)
+に共通な属性を指定することができます。
+background や forground、fontHeight など、共通で指定したい属性は commonAttributes 要素で指定しておくと、
+いちいち指定する必要がありません。
+</p>
+<p>
+次の gridLayout 要素は、GUI 部品を並べるためのレイアウトを指定する要素です。gridLayout を指定すると、
+SWT の GridLayout が window 要素の配下に適用されます。
+GUI 部品の配置は、各部品の x 属性、y 属性で絶対座標を指定することができますが、
+ウィンドウを可変サイズにしたアプリケーションでは、レイアウトを利用した方がウィンドウのサイズに従って
+部品が再配置されるため、見栄えが良くなるという利点があります。
+gridLayout の各属性は、SWT の GridLayout とまったく同じ属性が指定できますので、
+詳細は <a href="http://help.eclipse.org/help32/nftopic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/GridLayout.html">GridLayout の APIリファレンス</a>をご覧ください。
+(このあたりが SWT の知識が必要となる所以です)
+</p>
+<p>
+現在、S2JFace では、RowLayout、FillLayout、GridLayout の 3 種類が利用できます。
+</p>
+<p>
+SWTのレイアウト指定については、<a href="http://www13.plala.or.jp/observe/swt/swt_layout.html">こちらのサイト</a>が参考になるでしょう。
+</p>
+
+<p>
+次の label 要素は、文字通りテキストラベルを表示するためのものです。text 属性で指定した文字列が表示されます。
+</p>
+
+<p>
+composite 要素は通常、他の GUI 部品を格納するためのコンテナとして利用します。
+composite 要素には、window 要素と同じように commonAttributes や レイアウトが指定できます。
+(SWTをご存じの方は、SWT における Composite クラスと同様と思っていただければ良いでしょう)
+ここでは、空の GUI コンポーネントとして配置しています。(GridLayoutで横3列の配置としているため)
+</p>
+
+<p>
+gridData 要素は、親要素の配置情報を詳細に指定するためのもので、これも SWT における gridData と全く同じです。
+</p>
+
+<p>
+最後の button 要素はボタンを表示するためのものです。
+id 属性は画面表示とは直接関係はありませんが、後で紹介する MethodBinding と密接な関係を持っています。
+</p>
+
+<p>
+以上が、簡単な画面定義 XML の構造です。残念ながらリファレンスはまだ作成中ですが、
+<a href="components.html">こちら</a>のページを参考にすれば、だいたいの記述方法はわかると思います。
+</p>
+
+<h3><a name="howtoDisplay">画面表示の方法</a></h3>
+<p>
+S2JFace で画面定義 XML ファイルを表示するには、まず、画面定義ファイルがクラスパスに通っている必要があります。
+また、画面で表示する画像ファイルなどのリソースも同様です。
+</p>
+<p>
+画面を表示するには、2つの方法があります。1つめは、起動引数として指定する方法です。
+</p>
+<p>
+以下のように、org.seasar.jface.S2JFace をメインクラスとしてJavaを実行し、第1引数に画面定義ファイルのパスを
+渡すだけで画面が表示されます。
+</p>
+<pre>
+java -cp (クラスパス) -Djava.library.path=c:/s2-jface-0.1.0/lib org.seasar.jface.S2JFace (続く)
+org/seasar/jface/example/janken/DIdeJanken.xml
+</pre>
+<p>
+この場合、画面定義ファイルは DIdeJanken.xml という名前で、
+クラスパス中の org/seasar/jface/example/janken/ というディレクトリに存在します。
+</p>
+
+<p>
+もう一つの方法は、プログラム内部から利用する方法です。
+以下のように、S2JFaceクラスの openWindow メソッドの引数として画面定義XMLのパスを渡します。
+</p>
+<pre>
+  S2JFace s2JFace = new S2JFace();
+  s2JFace.openWindow("org/seasar/jface/example/janken/DIdeJanken.xml");
+</pre>
+
+</div><!-- section -->
+
+</div><!-- article -->
+
+</div><!-- contents_center -->
+
+<div id="footer">
+<address>&copy; Copyright The Seasar Foundation and the others 2004-2007, all rights reserved.</address>
+<div class="line"><span class="hide">spacer</span></div>
+</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>

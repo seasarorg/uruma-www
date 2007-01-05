@@ -1,0 +1,36 @@
+h3 {
+	font-size : 9pt;
+}
+
+table.view {
+	border: 1px solid #999999;
+	border-collapse: collapse;
+}
+table.view th{
+	line-height: 130%;
+	border: 1px solid #999999;
+	color: #000066;
+	background : #D8E4FE;
+	text-align : center;
+	font-weight : bold;
+}
+table.view td{
+	border: 1px solid #999999;
+	empty-cells: show;
+	text-align : left;
+}
+
+pre {
+	padding: 5pt 5pt 5pt 5pt;
+	background-color: #eaeaea;
+	color: #333333;
+	border: 1px solid #7e7e7e;
+	line-height: 120%;
+	font-family: Courier New;
+	font-size: 9pt;
+}
+
+code {
+	font-family: Courier New;
+	font-size: 9pt;
+}
