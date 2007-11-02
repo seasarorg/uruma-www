@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
-<title>リッチクライアントアプリケーション・フレームワーク S2JFace</title>
+<meta name="keywords" content="Uruma, S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク Uruma (旧:S2JFace)</title>
 <link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
 <link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
 </head>
@@ -54,17 +54,17 @@
 <h2>メニュー</h2>
 <ul>
 	<li><a href="index.html">トップページ</a></li>
-	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
-	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
-	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
-	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/uruma-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/URUMA">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/uruma/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.uruma">SVN リポジトリブラウザ</a></li>
 	<li><a href="download.html">ダウンロード</a></li>
 </ul>
 
 <h2>ドキュメント</h2>
 <ul>
 	<li><a href="setup.html">セットアップ</a></li>
-	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="functions.html">Uruma の提供する機能</a></li>
 	<li><a href="viewXml.html">画面表示機能</a></li>
 	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
 	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
@@ -83,10 +83,10 @@
 <div class="section">
 <h2>概要</h2>
 <p>
-S2JFaceは、XML定義によるGUIの表示(SWT/JFaceを使用)と、GUIとSeasar2上のコンポーネントとの連携を実現するリッチクライアントアプリケーションフレームワークです。S2JFaceを利用することで、リッチクライアントアプリケーションが効率的に開発できるようになります。
+Uruma は、XML定義によるGUIの表示(SWT/JFaceを使用)と、GUIとSeasar2上のコンポーネントとの連携を実現するリッチクライアントアプリケーションフレームワークです。Uruma を利用することで、リッチクライアントアプリケーションが効率的に開発できるようになります。
 </p>
 <p>
-まずは、S2JFaceを利用した<a href="../download/2006-12-31/s2-jface-example-employee-0.1.0.zip">サンプルアプリケーション</a>をダウンロードして、実行してみてください。実行方法は簡単！ダウンロードしたファイルを展開し、run.bat をダブルクリックするだけです。
+まずは、Uruma を利用した<a href="../download/2007-11-02/uruma-example-employee-0.1.0.zip">サンプルアプリケーション</a>をダウンロードして、実行してみてください。実行方法は簡単！ダウンロードしたファイルを展開し、run.bat をダブルクリックするだけです。
 </p>
 
 <p>以下のような画面が表示されたでしょうか？</p>
@@ -96,10 +96,10 @@ S2JFaceは、XML定義によるGUIの表示(SWT/JFaceを使用)と、GUIとSeasar2上のコンポーネ
 </div>
 
 <p>
-これはWebアプリケーションフレームワーク・<a href="http://s2jsf.seasar.org/ja/">S2JSF</a>のサンプルアプリケーションとして収録されている Employee-ManagementをS2JFaceの機能を使ってGUIアプリケーションとして作成したものです。
+これはWebアプリケーションフレームワーク・<a href="http://s2jsf.seasar.org/ja/">S2JSF</a>のサンプルアプリケーションとして収録されている Employee-Management を Uruma の機能を使って GUI アプリケーションとして作成したものです。
 </p>
 <p>
-S2JFaceでは、このようなGUIアプリケーションを簡単に作成することができます。S2JFace では、Seasar2 による Web アプリケーションのアーキテクチャ(Goya)
+Uruma では、このようなGUIアプリケーションを簡単に作成することができます。Uruma では、Seasar2 による Web アプリケーションのアーキテクチャ(Goya)
 をできるかぎり踏襲しているため、Seasar2 による Web アプリケーション開発に慣れた方ならば、より簡単に GUI アプリケーションを作成することができます。
 (事実、ここで紹介しているサンプルアプリケーションも、Logic層、Dao層は Employee-Managementとほとんど同じ作りになっています。)
 </p>
@@ -107,23 +107,23 @@ S2JFaceでは、このようなGUIアプリケーションを簡単に作成することができます。S2JFac
 もちろん、<a href="http://s2dao.seasar.org/ja/">S2Dao</a>も今まで通り利用できるため、データベースを利用するアプリケーションも簡単に作成できます！
 </p>
 <p>
-また、S2JFace で表現できる GUI コンポーネントは、<a href="components.html">こちら</a> から見ることができます。
+また、Uruma で表現できる GUI コンポーネントは、<a href="components.html">こちら</a> から見ることができます。
 現段階で、数多くのコンポーネント表示に対応しています。
 </p>
 </div><!-- section -->
 
 <div class="section">
 <h2>メーリングリスト</h2>
-<p>S2JFaceの開発者用メーリングリストを開設しました！ 今後の仕様検討は、このメーリングリストを中心として行っていく予定です。</p>
-<p>メーリングリストは、S2JFaceに興味のある方なら、どなたでも参加することができます。仕様に関する要望などもメーリングリスト上で受け付けますので、ぜひご参加ください！</p>
+<p>Uruma の開発者用メーリングリストを開設しました！ 今後の仕様検討は、このメーリングリストを中心として行っていく予定です。</p>
+<p>メーリングリストは、Uruma に興味のある方なら、どなたでも参加することができます。仕様に関する要望などもメーリングリスト上で受け付けますので、ぜひご参加ください！</p>
 <ul>
-  <li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/" target="_blank">s2jface-dev メーリングリスト総合案内</a></li>
+  <li><a href="https://ml.seasar.org/mailman/listinfo/uruma-dev/" target="_blank">uruma-dev メーリングリスト総合案内</a></li>
 </ul>
 </div><!-- section -->
 
 <div class="section">
 <h2>コミッタのブログ</h2>
-<p>S2JFaceは、コミッタのブログを中心として仕様検討を進めています。</p>
+<p>Uruma は、コミッタのブログを中心として仕様検討を進めています。</p>
 <ul>
   <li><a href="http://d.hatena.ne.jp/y-komori/" target="_blank">こもりん日記</a></li>
   <li><a href="http://d.hatena.ne.jp/dkameya/" target="_blank">大樹の色々日記</a></li>
@@ -133,20 +133,20 @@ S2JFaceでは、このようなGUIアプリケーションを簡単に作成することができます。S2JFac
 
 <div class="section">
 <h2>トラッキングシステム</h2>
-<p>S2JFaceの機能追加については、seasar.org の提供するトラッキングシステムを利用して管理しています。</p>
+<p>Uruma の機能追加については、seasar.org の提供するトラッキングシステムを利用して管理しています。</p>
 <ul>
-  <li><a href="https://www.seasar.org/issues/browse/JFACE" target="_blank">トラッキングシステム</a></li>
+  <li><a href="https://www.seasar.org/issues/browse/URUMA" target="_blank">トラッキングシステム</a></li>
 </ul>
 </div><!-- section -->
 
 <div class="section">
 <h2>Subversionリポジトリ</h2>
-<p>S2JFaceのソースコードは、seasar.org のSubversionリポジトリで公開されています。</br>
+<p>Uruma のソースコードは、seasar.org のSubversionリポジトリで公開されています。</br>
 どなたでもアクセスしてソースコードを閲覧することができます。</br>
 (以下のリンクをクリックするとWeb経由でもソースコードを閲覧できます)
 </p>
 <dl>
-<dt><b>SVNリポジトリのURL</b></dt><dd><a href="https://www.seasar.org/svn/sandbox/s2jface/">https://www.seasar.org/svn/sandbox/s2jface/</a></dd>
+<dt><b>SVNリポジトリのURL</b></dt><dd><a href="https://www.seasar.org/svn/sandbox/uruma/">https://www.seasar.org/svn/sandbox/uruma/</a></dd>
 </dl>
 </div><!-- section -->
 

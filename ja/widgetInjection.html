@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
-<title>リッチクライアントアプリケーション・フレームワーク S2JFace - ウィジット・インジェクション</title>
+<meta name="keywords" content="Uruma, S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク Uruma - ウィジット・インジェクション</title>
 <link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
 <link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
 </head>
@@ -54,10 +54,10 @@
 <h2>メニュー</h2>
 <ul>
 	<li><a href="index.html">トップページ</a></li>
-	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
-	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
-	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
-	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/uruma-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/URUMA">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/uruma/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.uruma">SVN リポジトリブラウザ</a></li>
 	<li><a href="download.html">ダウンロード</a></li>
 </ul>
 
@@ -65,7 +65,7 @@
 <h2>ドキュメント</h2>
 <ul>
 	<li><a href="setup.html">セットアップ</a></li>
-	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="functions.html">Uruma の提供する機能</a></li>
 	<li><a href="viewXml.html">画面表示機能</a></li>
 	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
 	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
@@ -85,7 +85,7 @@
 <h2><a name="widgetInjection">ウィジット・インジェクション</a></h2>
 <p>
 GUI プログラミングでは、GUIオブジェクトの取り回しが煩雑で、しばしば汚いコードになりがちです。
-S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代入することができます。
+Uruma では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代入することができます。
 この機能を、<b>ウィジット・インジェクション(Widget Injection)</b>と呼びます。
 </p>
 <p>
@@ -99,7 +99,7 @@ S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代�
 <p>
 以下のように id と同じ名前のフィールドに、対応する Button オブジェクトがインジェクションされます。
 (もちろん、フィールドの型は GUI コンポーネントに対応する SWT の Widget である必要があります)
-また、インジェクションはフィールドに対して直接行われるため、setter メソッドを作成する必要はありません。
+また、インジェクションは S2Container のパブリック・フィールド・インジェクションを利用して行われるため、public なフィールドであれば setter メソッドを作成する必要はありません。(setter メソッドが存在すれば、そちらを優先して使用します。)
 </p>
 <pre>
   private Button button;
@@ -111,11 +111,11 @@ S2JFace では、画面上の任意の GUI オブジェクトを、アクション・クラスへ自動的に代�
 
 <h3><a name="implicitComponent">暗黙のGUIコンポーネント</a></h3>
 <p>
-S2JFace では、画面に対応した Shell オブジェクトが shell という名前で自動的に登録されます。
-従って、以下のように shell フィールドを用意するだけで、Shell オブジェクトを得ることができます。
+Uruma では、画面に対応した Shell オブジェクトが shell という名前で自動的に登録されます。
+したがって、以下のように shell フィールドを用意するだけで、Shell オブジェクトを得ることができます。
 </p>
 <pre>
-  private Shell shell;
+  public Shell shell;
 </pre>
 </div><!-- section -->
 

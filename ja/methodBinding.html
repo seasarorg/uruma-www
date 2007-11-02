@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
-<title>リッチクライアントアプリケーション・フレームワーク S2JFace - メソッド・バインディング</title>
+<meta name="keywords" content="Uruma, S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク Uruma - メソッド・バインディング</title>
 <link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
 <link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
 </head>
@@ -54,10 +54,10 @@
 <h2>メニュー</h2>
 <ul>
 	<li><a href="index.html">トップページ</a></li>
-	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
-	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
-	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
-	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/uruma-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/URUMA">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/uruma/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.uruma">SVN リポジトリブラウザ</a></li>
 	<li><a href="download.html">ダウンロード</a></li>
 </ul>
 
@@ -65,7 +65,7 @@
 <h2>ドキュメント</h2>
 <ul>
 	<li><a href="setup.html">セットアップ</a></li>
-	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="functions.html">Uruma の提供する機能</a></li>
 	<li><a href="viewXml.html">画面表示機能</a></li>
 	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
 	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
@@ -84,7 +84,7 @@
 <div class="section">
 <h2><a name="methodBinding">メソッド・バインディング</a></h2>
 <p>
-S2JFace では、画面上にボタンが押されるなどのイベントが発生した際、
+Uruma では、画面上にボタンが押されるなどのイベントが発生した際、
 S2Container に登録されたコンポーネント上のメソッドを呼び出すことができます。
 これを、<b>メソッド・バインディング(Method Binding)</b>と呼びます。
 メソッド・バインディングを利用すると、GUI プログラミングにありがちなリスナークラスを
@@ -93,7 +93,7 @@ S2Container に登録されたコンポーネント上のメソッドを呼び出すことができます。
 <h3><a name="actionClass">アクション・クラス</a></h3>
 <p>
 メソッド・バインディングにより画面から呼び出されるクラスのことを、
-S2JFace では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1となるように作成します。
+Uruma では<b>アクション・クラス</b>と呼びます。アクション・クラスは画面と1対1となるように作成します。
 </p>
 <p>
 今まで Web アプリケーションを作成してきた方は、Web アプリケーションにおける Action クラス
@@ -159,10 +159,10 @@ public void label() {
 </pre>
 
 <p>
-type 属性で指定する値は、<code>org.seasar.jface.annotation.EventListenerType</code> 
+type 属性で指定する値は、<code>org.seasar.uruma.annotation.EventListenerType</code> 
 クラスで定義されている定数を指定します。
 定数には以下のようなものがあり、SWT で定義されているすべてのイベントを指定できます。
-また、イベントの利用例については、<code>org.seasar.jface.annotation.EventListenerTypeTest</code> クラスをご覧ください。
+また、イベントの利用例については、<code>org.seasar.uruma.annotation.EventListenerTypeTest</code> クラスをご覧ください。
 </p>
 <p>
 なお、type 属性に何も指定しない場合は、EventListenerType.SELECTION を指定したのと同じことになります。

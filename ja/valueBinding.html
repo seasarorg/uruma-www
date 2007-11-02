@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="keywords" content="S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
-<title>リッチクライアントアプリケーション・フレームワーク S2JFace - バリュー・バインディング</title>
+<meta name="keywords" content="Uruma, S2JFace, SWT, JFace, リッチクライアント, Seasar2, OSS, オープンソースソフトウェア, Java, フレームワーク, " />
+<title>リッチクライアントアプリケーション・フレームワーク Uruma, - バリュー・バインディング</title>
 <link rel="stylesheet" type="text/css" href="../theme/main.css" media="screen,projection" />
 <link rel="stylesheet" type="text/css" href="../theme/print.css" media="print" />
 </head>
@@ -54,10 +54,10 @@
 <h2>メニュー</h2>
 <ul>
 	<li><a href="index.html">トップページ</a></li>
-	<li><a href="https://ml.seasar.org/mailman/listinfo/s2jface-dev/">メーリングリスト</a></li>
-	<li><a href="https://www.seasar.org/issues/browse/JFACE">トラッキング</a></li>
-	<li><a href="https://www.seasar.org/svn/sandbox/s2jface/">SVN リポジトリ</a></li>
-	<li><a href="http://svn.seasar.org/browse/?root=sandbox.s2jface">SVN リポジトリブラウザ</a></li>
+	<li><a href="https://ml.seasar.org/mailman/listinfo/uruma-dev/">メーリングリスト</a></li>
+	<li><a href="https://www.seasar.org/issues/browse/URUMA">トラッキング</a></li>
+	<li><a href="https://www.seasar.org/svn/sandbox/uruma/">SVN リポジトリ</a></li>
+	<li><a href="http://svn.seasar.org/browse/?root=sandbox.uruma">SVN リポジトリブラウザ</a></li>
 	<li><a href="download.html">ダウンロード</a></li>
 </ul>
 
@@ -65,7 +65,7 @@
 <h2>ドキュメント</h2>
 <ul>
 	<li><a href="setup.html">セットアップ</a></li>
-	<li><a href="functions.html">S2JFaceの提供する機能</a></li>
+	<li><a href="functions.html">Uruma の提供する機能</a></li>
 	<li><a href="viewXml.html">画面表示機能</a></li>
 	<li><a href="methodBinding.html">メソッド・バインディング</a></li>
 	<li><a href="widgetInjection.html">ウィジット・インジェクション</a></li>
@@ -85,7 +85,7 @@
 <h2><a name="valueBinding">バリュー・バインディング</a></h2>
 <p>
 GUI アプリケーションにおいて、次のようば画面から値を入力する場面はよくあります。
-S2JFace では、画面上のテキストフィールドに入力された値を、直接 POJO ヘバインドすることができます。
+Uruma では、画面上のテキストフィールドに入力された値を、直接 POJO ヘバインドすることができます。
 また、逆に画面の初期表示時にあらかじめテキストフィールドへ値を表示させておきたい場合、
 POJO のフィールドからテキストフィールドに値をバインドすることもできます。
 </p>
@@ -138,7 +138,7 @@ public class EmployeeEditAction {
 
 <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;template xmlns=&quot;http://s2jface.sandbox.seasar.org&quot;&gt;
+&lt;template xmlns=&quot;http://uruma.sandbox.seasar.org&quot;&gt;
   &lt;window id=&quot;edit&quot; style=&quot;TITLE, CLOSE, PRIMARY_MODAL&quot; title=&quot;従業員情報編集&quot;
     image=&quot;title&quot; defaultButtonId=&quot;ok&quot; defaultFocusId=&quot;ename&quot;&gt;
     &lt;gridLayout numColumns=&quot;1&quot;&gt;
@@ -259,9 +259,7 @@ id 属性が使用できます。
 
 <p>
 DTO のフィールドのうち、画面に表示するものには、<code>@BindingLabel</code> アノテーションを
-記述します。テーブルにバインドする場合は、<code>@BindingLabel</code> アノテーションの
-column 属性で0から始まるカラム番号指定することで、どのフィールドを何番目の列に表示するかも
-指定することができます。
+記述します。テーブルにバインドする場合は、<code>@BindingLabel</code> アノテーションのついたフィールドの名前と画面定義 XML における column 要素の id が一致させることで、表示させる列を指定することができます。
 </p>
 </div><!-- section -->
 
